@@ -65,6 +65,7 @@ const THEME_DONUT_PALETTE = [
 ];
 
 const COLORS = THEME_DONUT_PALETTE;
+const DONUT_PALETTE = THEME_DONUT_PALETTE;
 
 // Helper to aggregate high-cardinality raw rows into 4-6 clean, distinct Donut slices
 function getAggregatedDonutData(visual: DashboardVisual): Array<{ name: string; value: number }> {
@@ -243,7 +244,7 @@ function Chart({ visual }: { visual: DashboardVisual }) {
   );
   const horizontal = visual.chart_type === 'horizontal_bar';
   return (
-    <ResponsiveContainer width="100%" height="100%"><BarChart data={visual.data} layout={horizontal ? 'vertical' : 'horizontal'} margin={{ top: 4, right: 8, bottom: horizontal ? 0 : 18, left: horizontal ? 0 : -12 }}><CartesianGrid stroke="var(--border-subtle)" strokeDasharray="3 3" vertical={!horizontal} horizontal={horizontal} />{horizontal ? <><XAxis {...axis} type="number" /><YAxis {...axis} dataKey={visual.x_key} type="category" width={70} /></> : <><XAxis {...axis} dataKey={visual.x_key} interval="preserveStartEnd" /><YAxis {...axis} width={44} /></>}<Tooltip contentStyle={tooltip} /><Bar dataKey={yKey} fill="var(--accent)" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>{visual.id === 'value_distribution' && visual.data.map((_, index) => <Cell key={index} fill={DONUT_PALETTE[index % 2]} />)}</Bar></BarChart></ResponsiveContainer>
+    <ResponsiveContainer width="100%" height="100%"><BarChart data={visual.data} layout={horizontal ? 'vertical' : 'horizontal'} margin={{ top: 4, right: 8, bottom: horizontal ? 0 : 18, left: horizontal ? 0 : -12 }}><CartesianGrid stroke="var(--border-subtle)" strokeDasharray="3 3" vertical={!horizontal} horizontal={horizontal} />{horizontal ? <><XAxis {...axis} type="number" /><YAxis {...axis} dataKey={visual.x_key} type="category" width={70} /></> : <><XAxis {...axis} dataKey={visual.x_key} interval="preserveStartEnd" /><YAxis {...axis} width={44} /></>}<Tooltip contentStyle={tooltip} /><Bar dataKey={yKey} fill="var(--accent)" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>{visual.id === 'value_distribution' && visual.data.map((_, index) => <Cell key={index} fill={THEME_DONUT_PALETTE[index % THEME_DONUT_PALETTE.length]} />)}</Bar></BarChart></ResponsiveContainer>
   );
 }
 
