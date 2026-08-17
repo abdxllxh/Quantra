@@ -129,7 +129,7 @@ function getAggregatedDonutData(visual: DashboardVisual): Array<{ name: string; 
 }
 
 const panel = 'rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_1px_2px_rgba(15,23,42,0.05)]';
-const chartSpans = ['xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4', 'xl:col-span-4'];
+const chartSpans = ['xl:col-span-5', 'xl:col-span-4', 'xl:col-span-3', 'xl:col-span-3', 'xl:col-span-5', 'xl:col-span-4'];
 
 function CompactLoader() {
   return (
@@ -452,7 +452,7 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
     const baseVisuals = [
       ...dashboard.visuals.filter((item) => targetSupportingIds.has(item.id)),
       ...dashboard.visuals.filter((item) => !targetSupportingIds.has(item.id)),
-    ].slice(0, 9);
+    ].slice(0, 6);
 
     return baseVisuals.map((visual) => {
       const override = visualOverrides[visual.id] || visualOverrides[visual.title.toLowerCase()] || visualOverrides[visual.chart_type];
@@ -942,7 +942,7 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
       </AnimatePresence>
 
       <div className="grid min-h-0 flex-1 gap-2.5 xl:grid-cols-[minmax(0,3.2fr)_minmax(250px,0.9fr)]">
-        <motion.section key={`canvas-${activePerspective}`} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="grid min-h-0 auto-rows-[230px] grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-12 overflow-y-auto pr-1">
+        <motion.section key={`canvas-${activePerspective}`} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="grid min-h-0 auto-rows-[220px] grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-12 xl:grid-rows-2 xl:auto-rows-auto">
           {canvasVisuals.map((visual, index) => <article key={visual.id} className={`${panel} flex min-h-0 flex-col overflow-hidden p-2.5 ${chartSpans[index] ?? 'col-span-4'}`}><div className="flex shrink-0 items-start justify-between gap-2"><div className="min-w-0"><h2 className="truncate text-[11px] font-black uppercase tracking-[0.03em]" title={visual.title}>{visual.title}</h2><p className="mt-0.5 truncate text-[9px] text-[var(--text-muted)]" title={visual.subtitle}>{visual.subtitle}</p></div><span className="shrink-0 rounded bg-[var(--bg-surface-subtle)] px-1.5 py-0.5 font-mono text-[8px] uppercase text-[var(--text-muted)]">{visual.chart_type.replace('_', ' ')}</span></div><div className="mt-1.5 min-h-0 flex-1"><Chart visual={visual} /></div><p className="mt-1 shrink-0 truncate border-t border-[var(--border-subtle)] pt-1 text-[8px] text-[var(--text-muted)]" title={`Dimension: ${visual.x_key}. Measure: ${visual.y_keys.join(', ')}`}>Dimension: <b>{visual.x_key}</b> · Measure: <b>{visual.y_keys.join(', ')}</b></p></article>)}
         </motion.section>
 
