@@ -491,6 +491,9 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
     setAttachedImage(null);
     setCopilotLoading(true);
 
+    // Realistic 2-second AI computation and vision processing delay
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     const lower = text.toLowerCase();
 
     // Extract OCR text from screenshot if provided
@@ -783,15 +786,17 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
           <button type="button" onClick={() => setDashboardVariant((value) => value + 1)} title="Build another dashboard from different valid patterns in this dataset" className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] px-2.5 text-xs font-bold hover:border-[var(--accent)] cursor-pointer"><RefreshCw className="h-3.5 w-3.5" />Build another</button>
           
           {/* Visual Copilot AI Trigger Button matching theme */}
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setVisualCopilotOpen((prev) => !prev)}
             title="Open Visual Copilot AI Assistant"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 text-xs font-bold text-[var(--text-primary)] hover:border-[var(--accent)] hover:bg-[var(--bg-surface-subtle)] transition cursor-pointer"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 text-xs font-bold text-[var(--text-primary)] hover:border-[var(--accent)] hover:bg-[var(--bg-surface-subtle)] transition cursor-pointer relative overflow-hidden"
           >
-            <Sparkles className="h-3.5 w-3.5 text-[var(--accent)]" />
+            <Sparkles className="h-3.5 w-3.5 text-[var(--accent)] animate-pulse" />
             <span>Visual Copilot</span>
-          </button>
+          </motion.button>
 
           <button type="button" onClick={exportBrief} className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[var(--accent)] px-3 text-xs font-bold text-white hover:bg-[var(--accent-hover)] cursor-pointer"><Download className="h-3.5 w-3.5" />Export</button>
         </div>
@@ -817,9 +822,16 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
         </aside>
       </div>
 
-      {/* Visual Copilot AI Chat Drawer */}
-      {visualCopilotOpen && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] bg-[var(--bg-surface)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col justify-between text-[var(--text-primary)] animate-in slide-in-from-right duration-200 select-none">
+      {/* Visual Copilot AI Chat Drawer with Spring Animation */}
+      <AnimatePresence>
+        {visualCopilotOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: 460 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 460 }}
+            transition={{ type: "spring", damping: 26, stiffness: 220 }}
+            className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] bg-[var(--bg-surface)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col justify-between text-[var(--text-primary)] select-none"
+          >
           {/* Header */}
           <div className="p-4 border-b border-[var(--border-subtle)] flex items-center justify-between bg-[var(--bg-card)]">
             <div className="flex items-center gap-2.5">
@@ -997,8 +1009,9 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
               </button>
             </form>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
