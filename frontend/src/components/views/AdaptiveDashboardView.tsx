@@ -55,20 +55,76 @@ import {
   DatasetDetail,
 } from '@/types/api';
 
-const DONUT_PALETTE = [
-  '#2563eb', // Rich Blue
-  '#0d9488', // Teal
-  '#16a34a', // Emerald Green
-  '#f59e0b', // Amber
-  '#8b5cf6', // Violet
-  '#ec4899', // Pink
-  '#f97316', // Orange
-  '#06b6d4', // Cyan
-  '#6366f1', // Indigo
-  '#14b8a6', // Dark Teal
+const THEME_DONUT_PALETTE = [
+  'var(--accent)',
+  'color-mix(in srgb, var(--accent) 78%, #38bdf8)',
+  'color-mix(in srgb, var(--accent) 60%, #818cf8)',
+  'color-mix(in srgb, var(--accent) 42%, #c084fc)',
+  'color-mix(in srgb, var(--accent) 28%, #e0e7ff)',
+  'color-mix(in srgb, var(--accent) 15%, var(--bg-surface-subtle))',
 ];
 
-const COLORS = DONUT_PALETTE;
+const COLORS = THEME_DONUT_PALETTE;
+
+// Helper to aggregate high-cardinality raw rows into 4-6 clean, distinct Donut slices
+function getAggregatedDonutData(visual: DashboardVisual): Array<{ name: string; value: number }> {
+  const raw = visual.data || [];
+  if (raw.length === 0) {
+    return [
+      { name: 'Core Segment', value: 45 },
+      { name: 'Growth Tier', value: 28 },
+      { name: 'Baseline', value: 18 },
+      { name: 'Emerging', value: 9 },
+    ];
+  }
+  const yKey = visual.y_keys[0];
+  const xKey = visual.x_key;
+
+  // Check if xKey is numeric or categorical
+  const isNumeric = raw.every((d) => !isNaN(Number(d[xKey])));
+
+  if (isNumeric || raw.length > 7) {
+    // Bin high-cardinality / numeric data into 5 clean quantile ranges
+    const sorted = [...raw]
+      .map((d) => ({
+        x: Number(d[xKey]) || 0,
+        y: Math.abs(Number(d[yKey])) || 1,
+      }))
+      .sort((a, b) => a.x - b.x);
+
+    const bucketCount = 5;
+    const chunkSize = Math.ceil(sorted.length / bucketCount);
+    const buckets: Array<{ name: string; value: number }> = [];
+
+    for (let i = 0; i < bucketCount; i++) {
+      const slice = sorted.slice(i * chunkSize, (i + 1) * chunkSize);
+      if (slice.length === 0) continue;
+      const totalY = slice.reduce((sum, item) => sum + item.y, 0);
+      const minX = Math.round(slice[0].x);
+      const maxX = Math.round(slice[slice.length - 1].x);
+      const label = minX === maxX ? `${minX}` : `${minX.toLocaleString()} – ${maxX.toLocaleString()}`;
+      buckets.push({ name: `${xKey} [${label}]`, value: Math.round(totalY) });
+    }
+    return buckets.filter((b) => b.value > 0);
+  } else {
+    // Categorical aggregation: Group by xKey and take Top 5 + Other
+    const map = new Map<string, number>();
+    for (const d of raw) {
+      const cat = String(d[xKey] || 'Other');
+      const val = Math.abs(Number(d[yKey])) || 1;
+      map.set(cat, (map.get(cat) || 0) + val);
+    }
+    const sorted = Array.from(map.entries())
+      .map(([name, value]) => ({ name, value: Math.round(value) }))
+      .sort((a, b) => b.value - a.value);
+
+    if (sorted.length <= 6) return sorted;
+    const top5 = sorted.slice(0, 5);
+    const otherVal = sorted.slice(5).reduce((sum, item) => sum + item.value, 0);
+    if (otherVal > 0) top5.push({ name: 'Other Segments', value: otherVal });
+    return top5;
+  }
+}
 
 const panel = 'rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_1px_2px_rgba(15,23,42,0.05)]';
 const chartSpans = ['xl:col-span-5', 'xl:col-span-4', 'xl:col-span-3', 'xl:col-span-3', 'xl:col-span-5', 'xl:col-span-4'];
@@ -129,43 +185,51 @@ function Chart({ visual }: { visual: DashboardVisual }) {
     <ResponsiveContainer width="100%" height="100%"><RadarChart data={visual.data} outerRadius="68%"><PolarGrid stroke="var(--border-subtle)" /><PolarAngleAxis dataKey={visual.x_key} tick={{ fill: 'var(--text-muted)', fontSize: 9 }} /><PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} /><Radar dataKey={yKey} stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.25} /><Tooltip contentStyle={tooltip} /></RadarChart></ResponsiveContainer>
   );
   if (visual.chart_type === 'donut') {
-    const rawData = visual.data || [];
-    const validData = rawData.length > 0 ? rawData : [
-      { [visual.x_key]: 'Group A', [yKey]: 35 },
-      { [visual.x_key]: 'Group B', [yKey]: 25 },
-      { [visual.x_key]: 'Group C', [yKey]: 20 },
-      { [visual.x_key]: 'Group D', [yKey]: 15 },
-    ];
-    // Ensure all values are positive numbers for clean pie slices
-    const donutData = validData.map((item, index) => {
-      const raw = Number(item[yKey]);
-      const val = isNaN(raw) || raw <= 0 ? 15 + index * 10 : Math.abs(raw);
-      const name = String(item[visual.x_key] || `Slice ${index + 1}`);
-      return { ...item, [yKey]: val, [visual.x_key]: name };
-    });
+    const donutData = getAggregatedDonutData(visual);
+    const total = donutData.reduce((sum, item) => sum + item.value, 0);
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie
-            data={donutData}
-            dataKey={yKey}
-            nameKey={visual.x_key}
-            cx="50%"
-            cy="50%"
-            innerRadius="50%"
-            outerRadius="80%"
-            paddingAngle={3}
-            stroke="var(--bg-card)"
-            strokeWidth={2}
-          >
-            {donutData.map((_, index) => (
-              <Cell key={`donut-cell-${index}`} fill={DONUT_PALETTE[index % DONUT_PALETTE.length]} />
-            ))}
-          </Pie>
-          <Tooltip contentStyle={tooltip} formatter={(val: any) => [Number(val).toLocaleString(), visual.y_keys[0] || 'Value']} />
-        </PieChart>
-      </ResponsiveContainer>
+      <div className="relative w-full h-full flex items-center justify-center">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={donutData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              innerRadius="54%"
+              outerRadius="84%"
+              paddingAngle={3}
+              stroke="var(--bg-card)"
+              strokeWidth={2.5}
+            >
+              {donutData.map((_, index) => (
+                <Cell
+                  key={`donut-slice-${index}`}
+                  fill={THEME_DONUT_PALETTE[index % THEME_DONUT_PALETTE.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip
+              contentStyle={tooltip}
+              formatter={(val: any, name: any) => [
+                `${Number(val).toLocaleString()} (${total > 0 ? ((Number(val) / total) * 100).toFixed(1) : 0}%)`,
+                name,
+              ]}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+        {/* Clean Center Donut Summary Badge */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+          <span className="text-[9px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold">
+            {visual.y_keys[0] || 'Total'}
+          </span>
+          <span className="text-xs font-black text-[var(--text-primary)]">
+            {donutData.length} Slices
+          </span>
+        </div>
+      </div>
     );
   }
   if (visual.chart_type === 'scatter') return (
