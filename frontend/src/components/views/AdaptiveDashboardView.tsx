@@ -55,13 +55,14 @@ import {
   DatasetDetail,
 } from '@/types/api';
 
+// Monochromatic theme palette perfectly matching website & other visuals (Cobalt / Blue)
 const THEME_DONUT_PALETTE = [
-  'var(--accent)',
-  'color-mix(in srgb, var(--accent) 78%, #38bdf8)',
-  'color-mix(in srgb, var(--accent) 60%, #818cf8)',
-  'color-mix(in srgb, var(--accent) 42%, #c084fc)',
-  'color-mix(in srgb, var(--accent) 28%, #e0e7ff)',
-  'color-mix(in srgb, var(--accent) 15%, var(--bg-surface-subtle))',
+  '#2563eb', // Primary Cobalt (Exact same as Bar / Area charts)
+  '#3b82f6', // Vibrant Sky Cobalt
+  '#60a5fa', // Soft Mist Cobalt
+  '#93c5fd', // Light Ice Blue
+  '#1d4ed8', // Deep Royal Blue
+  '#1e40af', // Navy Accent Blue
 ];
 
 const COLORS = THEME_DONUT_PALETTE;
@@ -221,13 +222,13 @@ function Chart({ visual }: { visual: DashboardVisual }) {
             />
           </PieChart>
         </ResponsiveContainer>
-        {/* Clean Center Donut Summary Badge */}
+        {/* Clean Center Donut Summary Badge matching theme */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
-          <span className="text-[9px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold">
-            {visual.y_keys[0] || 'Total'}
+          <span className="text-[8px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold">
+            {visual.y_keys[0] || 'Distribution'}
           </span>
-          <span className="text-xs font-black text-[var(--text-primary)]">
-            {donutData.length} Slices
+          <span className="text-[11px] font-black text-[var(--text-primary)]">
+            {donutData.length} Segments
           </span>
         </div>
       </div>
