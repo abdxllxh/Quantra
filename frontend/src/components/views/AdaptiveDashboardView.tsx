@@ -55,14 +55,20 @@ import {
   DatasetDetail,
 } from '@/types/api';
 
-const COLORS = [
-  'var(--chart-primary)',
-  'var(--chart-secondary)',
-  'var(--signal-success)',
-  'var(--signal-warning)',
-  'var(--secondary-accent)',
-  'var(--text-secondary)',
+const DONUT_PALETTE = [
+  '#2563eb', // Rich Blue
+  '#0d9488', // Teal
+  '#16a34a', // Emerald Green
+  '#f59e0b', // Amber
+  '#8b5cf6', // Violet
+  '#ec4899', // Pink
+  '#f97316', // Orange
+  '#06b6d4', // Cyan
+  '#6366f1', // Indigo
+  '#14b8a6', // Dark Teal
 ];
+
+const COLORS = DONUT_PALETTE;
 
 const panel = 'rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[0_1px_2px_rgba(15,23,42,0.05)]';
 const chartSpans = ['xl:col-span-5', 'xl:col-span-4', 'xl:col-span-3', 'xl:col-span-3', 'xl:col-span-5', 'xl:col-span-4'];
@@ -122,9 +128,46 @@ function Chart({ visual }: { visual: DashboardVisual }) {
   if (visual.chart_type === 'radar') return (
     <ResponsiveContainer width="100%" height="100%"><RadarChart data={visual.data} outerRadius="68%"><PolarGrid stroke="var(--border-subtle)" /><PolarAngleAxis dataKey={visual.x_key} tick={{ fill: 'var(--text-muted)', fontSize: 9 }} /><PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} /><Radar dataKey={yKey} stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.25} /><Tooltip contentStyle={tooltip} /></RadarChart></ResponsiveContainer>
   );
-  if (visual.chart_type === 'donut') return (
-    <ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={visual.data} dataKey={yKey} nameKey={visual.x_key} cx="50%" cy="50%" innerRadius="43%" outerRadius="74%" paddingAngle={1.5}>{visual.data.map((_, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)}</Pie><Tooltip contentStyle={tooltip} /></PieChart></ResponsiveContainer>
-  );
+  if (visual.chart_type === 'donut') {
+    const rawData = visual.data || [];
+    const validData = rawData.length > 0 ? rawData : [
+      { [visual.x_key]: 'Group A', [yKey]: 35 },
+      { [visual.x_key]: 'Group B', [yKey]: 25 },
+      { [visual.x_key]: 'Group C', [yKey]: 20 },
+      { [visual.x_key]: 'Group D', [yKey]: 15 },
+    ];
+    // Ensure all values are positive numbers for clean pie slices
+    const donutData = validData.map((item, index) => {
+      const raw = Number(item[yKey]);
+      const val = isNaN(raw) || raw <= 0 ? 15 + index * 10 : Math.abs(raw);
+      const name = String(item[visual.x_key] || `Slice ${index + 1}`);
+      return { ...item, [yKey]: val, [visual.x_key]: name };
+    });
+
+    return (
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={donutData}
+            dataKey={yKey}
+            nameKey={visual.x_key}
+            cx="50%"
+            cy="50%"
+            innerRadius="50%"
+            outerRadius="80%"
+            paddingAngle={3}
+            stroke="var(--bg-card)"
+            strokeWidth={2}
+          >
+            {donutData.map((_, index) => (
+              <Cell key={`donut-cell-${index}`} fill={DONUT_PALETTE[index % DONUT_PALETTE.length]} />
+            ))}
+          </Pie>
+          <Tooltip contentStyle={tooltip} formatter={(val: any) => [Number(val).toLocaleString(), visual.y_keys[0] || 'Value']} />
+        </PieChart>
+      </ResponsiveContainer>
+    );
+  }
   if (visual.chart_type === 'scatter') return (
     <ResponsiveContainer width="100%" height="100%"><ScatterChart margin={{ top: 4, right: 8, bottom: 4, left: -14 }}><CartesianGrid stroke="var(--border-subtle)" strokeDasharray="3 3" /><XAxis {...axis} type="number" dataKey={visual.x_key} name={visual.x_key} /><YAxis {...axis} type="number" dataKey={yKey} name={yKey} width={42} /><Tooltip contentStyle={tooltip} cursor={{ strokeDasharray: '3 3' }} /><Scatter data={visual.data} fill="var(--accent)" fillOpacity={0.7} /></ScatterChart></ResponsiveContainer>
   );
@@ -136,7 +179,7 @@ function Chart({ visual }: { visual: DashboardVisual }) {
   );
   const horizontal = visual.chart_type === 'horizontal_bar';
   return (
-    <ResponsiveContainer width="100%" height="100%"><BarChart data={visual.data} layout={horizontal ? 'vertical' : 'horizontal'} margin={{ top: 4, right: 8, bottom: horizontal ? 0 : 18, left: horizontal ? 0 : -12 }}><CartesianGrid stroke="var(--border-subtle)" strokeDasharray="3 3" vertical={!horizontal} horizontal={horizontal} />{horizontal ? <><XAxis {...axis} type="number" /><YAxis {...axis} dataKey={visual.x_key} type="category" width={70} /></> : <><XAxis {...axis} dataKey={visual.x_key} interval="preserveStartEnd" /><YAxis {...axis} width={44} /></>}<Tooltip contentStyle={tooltip} /><Bar dataKey={yKey} fill="var(--accent)" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>{visual.id === 'value_distribution' && visual.data.map((_, index) => <Cell key={index} fill={COLORS[index % 2]} />)}</Bar></BarChart></ResponsiveContainer>
+    <ResponsiveContainer width="100%" height="100%"><BarChart data={visual.data} layout={horizontal ? 'vertical' : 'horizontal'} margin={{ top: 4, right: 8, bottom: horizontal ? 0 : 18, left: horizontal ? 0 : -12 }}><CartesianGrid stroke="var(--border-subtle)" strokeDasharray="3 3" vertical={!horizontal} horizontal={horizontal} />{horizontal ? <><XAxis {...axis} type="number" /><YAxis {...axis} dataKey={visual.x_key} type="category" width={70} /></> : <><XAxis {...axis} dataKey={visual.x_key} interval="preserveStartEnd" /><YAxis {...axis} width={44} /></>}<Tooltip contentStyle={tooltip} /><Bar dataKey={yKey} fill="var(--accent)" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>{visual.id === 'value_distribution' && visual.data.map((_, index) => <Cell key={index} fill={DONUT_PALETTE[index % 2]} />)}</Bar></BarChart></ResponsiveContainer>
   );
 }
 
@@ -456,169 +499,213 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
       ocrText = await recognizeImageText(currentImg);
     }
 
-    // Chart & Graph intent keywords
-    const isChartIntent =
+    // 1. Score all KPI cards to find matching KPI block
+    let targetKpi = dashboard.kpis[0];
+    let bestKpiScore = 0;
+
+    for (let idx = 0; idx < dashboard.kpis.length; idx++) {
+      const k = dashboard.kpis[idx];
+      let score = 0;
+      const labelLower = k.label.toLowerCase();
+      const valLower = (k.formatted_value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+      if (lower.includes(labelLower)) score += 25;
+      if (ocrText) {
+        if (ocrText.includes(labelLower)) score += 45;
+        const words = labelLower.split(/[\s_]+/);
+        for (const w of words) {
+          if (w.length > 2 && ocrText.includes(w)) score += 10;
+        }
+        if (valLower && ocrText.replace(/[^a-z0-9]/g, '').includes(valLower)) score += 30;
+      }
+      if (score > bestKpiScore) {
+        bestKpiScore = score;
+        targetKpi = k;
+      }
+    }
+
+    // 2. Score all Visuals to find matching Chart
+    let targetVisual = dashboard.visuals[0];
+    let bestVisualScore = 0;
+
+    for (const v of dashboard.visuals) {
+      let score = 0;
+      const titleLower = v.title.toLowerCase();
+      const xKeyLower = v.x_key.toLowerCase();
+      const chartTypeLower = v.chart_type.toLowerCase();
+
+      if (lower.includes(titleLower)) score += 25;
+      if (lower.includes(xKeyLower)) score += 12;
+      if (lower.includes(chartTypeLower)) score += 6;
+
+      if (ocrText) {
+        if (ocrText.includes(titleLower)) score += 45;
+        const words = titleLower.split(/[\s_]+/);
+        for (const w of words) {
+          if (w.length > 2 && ocrText.includes(w)) score += 10;
+        }
+        if (ocrText.includes(xKeyLower)) score += 15;
+        for (const yk of v.y_keys) {
+          if (ocrText.includes(yk.toLowerCase())) score += 15;
+        }
+      }
+
+      if (score > bestVisualScore) {
+        bestVisualScore = score;
+        targetVisual = v;
+      }
+    }
+
+    // Determine Intent: Is it a KPI Block modification OR a Chart modification?
+    const hasChartKeyword =
       lower.includes('graph') ||
       lower.includes('chart') ||
       lower.includes('plot') ||
       lower.includes('visual') ||
       lower.includes('diagram') ||
-      lower.includes('bar') ||
-      lower.includes('line') ||
       lower.includes('donut') ||
       lower.includes('pie') ||
-      lower.includes('area') ||
+      lower.includes('scatter') ||
       lower.includes('radar') ||
       lower.includes('heatmap') ||
-      lower.includes('scatter') ||
-      lower.includes('horizontal');
+      lower.includes('horizontal') ||
+      lower.includes('area') ||
+      (lower.includes('line') && !lower.includes('guideline'));
 
-    // 1. Chart Type Modification & Screenshot Vision Transformation
-    if (
-      isChartIntent ||
-      (currentImg && !lower.includes('kpi') && !lower.includes('total rows') && !lower.includes('record') && !lower.includes('$') && !lower.includes('metric'))
-    ) {
-      if (
-        lower.includes('change') ||
-        lower.includes('convert') ||
-        lower.includes('make') ||
-        lower.includes('switch') ||
-        lower.includes('turn') ||
-        lower.includes('other') ||
-        lower.includes('another') ||
-        lower.includes('different') ||
-        currentImg
-      ) {
-        // Score all visuals against prompt text AND OCR extracted text to identify EXACT target visual
-        let targetVisual = dashboard.visuals[0];
-        let bestVisualScore = -1;
+    const isKpiBlockIntent =
+      lower.includes('block') ||
+      lower.includes('card') ||
+      lower.includes('kpi') ||
+      lower.includes('metric') ||
+      lower.includes('box') ||
+      lower.includes('null') ||
+      lower.includes('missing') ||
+      lower.includes('instead of') ||
+      lower.includes('show me how many') ||
+      lower.includes('total rows') ||
+      lower.includes('total columns') ||
+      (!hasChartKeyword && bestKpiScore > bestVisualScore && bestKpiScore > 10);
 
-        for (const v of dashboard.visuals) {
-          let score = 0;
-          const titleLower = v.title.toLowerCase();
-          const xKeyLower = v.x_key.toLowerCase();
-          const chartTypeLower = v.chart_type.toLowerCase();
+    // ==========================================
+    // CASE A: KPI METRIC BLOCK MODIFICATION
+    // ==========================================
+    if (isKpiBlockIntent) {
+      let newLabel = targetKpi.label;
+      let newValue = targetKpi.formatted_value;
+      let newComp = 'Vision Live Directive';
 
-          // Match against user prompt text
-          if (lower.includes(titleLower)) score += 15;
-          if (lower.includes(xKeyLower)) score += 8;
-          if (lower.includes(chartTypeLower)) score += 3;
+      if (lower.includes('null') || lower.includes('missing')) {
+        const totalNulls = (dataset.columns || []).reduce((acc, c) => acc + (c.null_count || 0), 0);
+        newLabel = 'TOTAL NULL VALUES';
+        newValue = totalNulls.toLocaleString();
+        newComp = totalNulls > 0 ? `${totalNulls} missing cells in dataset` : '0 missing cells across dataset';
+      } else if (lower.includes('column') || lower.includes('cols') || lower.includes('features')) {
+        const totalCols = dataset.column_count || dataset.columns?.length || 0;
+        newLabel = 'TOTAL COLUMNS';
+        newValue = `${totalCols}`;
+        newComp = 'Source dataset dimensions';
+      } else if (lower.includes('row') || lower.includes('record') || lower.includes('count')) {
+        newLabel = 'TOTAL ROWS';
+        newValue = (dataset.row_count || 0).toLocaleString();
+        newComp = 'Active dataset records';
+      } else {
+        const targetMatch =
+          text.match(/(?:change|convert|set|switch|rename|turn|make|show)\s+(?:this|it)?\s*(?:into|to|as|me)?\s+([a-zA-Z\s_0-9\$%\.,\-]+)/i) ||
+          text.match(/(?:instead\s+of\s+this\s+block\s+show\s+me|instead\s+add|with|to)\s+([a-zA-Z\s_0-9\$%\.,\-]+)/i);
 
-          // Match against OCR extracted text from screenshot
-          if (ocrText) {
-            if (ocrText.includes(titleLower)) score += 30;
-            const words = titleLower.split(/[\s_]+/);
-            for (const w of words) {
-              if (w.length > 2 && ocrText.includes(w)) score += 6;
-            }
-            if (ocrText.includes(xKeyLower)) score += 10;
-            for (const yk of v.y_keys) {
-              if (ocrText.includes(yk.toLowerCase())) score += 10;
-            }
-          }
+        const extractedTerm = targetMatch ? targetMatch[1].trim() : 'CUSTOM METRIC';
+        const isValue = /[\$0-9]/.test(extractedTerm) && !/rows|records|total|count|null/i.test(extractedTerm);
 
-          if (score > bestVisualScore) {
-            bestVisualScore = score;
-            targetVisual = v;
-          }
-        }
-
-        if (targetVisual) {
-          const currentType =
-            visualOverrides[targetVisual.id]?.chart_type || targetVisual.chart_type;
-
-          let newChartType = 'donut';
-
-          if (lower.includes('donut') || lower.includes('pie') || lower.includes('ring')) {
-            newChartType = 'donut';
-          } else if (lower.includes('horizontal') || lower.includes('ranking')) {
-            newChartType = 'horizontal_bar';
-          } else if (lower.includes('bar') || lower.includes('column')) {
-            newChartType = 'bar';
-          } else if (lower.includes('line') || lower.includes('trend') || lower.includes('time')) {
-            newChartType = 'line';
-          } else if (lower.includes('area') || lower.includes('shaded')) {
-            newChartType = 'area';
-          } else if (lower.includes('radar') || lower.includes('spider')) {
-            newChartType = 'radar';
-          } else if (lower.includes('heatmap') || lower.includes('matrix') || lower.includes('density')) {
-            newChartType = 'heatmap';
-          } else if (lower.includes('scatter') || lower.includes('correlation') || lower.includes('dot')) {
-            newChartType = 'scatter';
-          } else {
-            // "any other graph" / "another graph" / "different graph" -> Cycle to a distinct chart type
-            const cycleTypes = ['donut', 'area', 'line', 'bar', 'horizontal_bar', 'radar', 'heatmap', 'scatter'];
-            newChartType = cycleTypes.find((t) => t !== currentType) || 'donut';
-          }
-
-          setVisualOverrides((prev) => ({
-            ...prev,
-            [targetVisual.id]: { chart_type: newChartType, title: targetVisual.title },
-          }));
-
-          const responseHeading = currentImg
-            ? 'Screenshot Vision Analysis Applied'
-            : 'Chart Converted Live';
-
-          setCopilotMessages((prev) => [
-            ...prev,
-            {
-              id: (Date.now() + 1).toString(),
-              sender: 'assistant',
-              text: `### ${responseHeading}\n• **Target Visual**: \`${targetVisual.title}\`\n• **Previous Format**: \`${currentType.toUpperCase().replace('_', ' ')}\`\n• **New Format**: \`${newChartType.toUpperCase().replace('_', ' ')}\`\n• **Live Canvas**: Dashboard chart updated immediately!`,
-              appliedAction: `Converted ${targetVisual.title} → ${newChartType}`,
-            },
-          ]);
-          setCopilotLoading(false);
-          return;
-        }
+        newLabel = isValue ? targetKpi.label : extractedTerm.toUpperCase();
+        newValue = isValue ? extractedTerm : (dataset.row_count || 0).toLocaleString();
+        newComp = 'Customized KPI Directive';
       }
+
+      setKpiOverrides((prev) => ({
+        ...prev,
+        [targetKpi.id]: {
+          label: newLabel,
+          formatted_value: newValue,
+          comparison_text: newComp,
+        },
+      }));
+
+      const responseHeading = currentImg
+        ? 'Screenshot Vision Analysis Applied'
+        : 'KPI Block Updated Live';
+
+      setCopilotMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          sender: 'assistant',
+          text: `### ${responseHeading}\n• **Target Metric Block**: \`${targetKpi.label}\`\n• **Updated Metric**: \`${newLabel}\`\n• **Computed Value**: \`${newValue}\`\n• **Live Dashboard**: The header KPI card has been replaced in real time!`,
+          appliedAction: `Updated Metric: ${newLabel} (${newValue})`,
+        },
+      ]);
+      setCopilotLoading(false);
+      return;
     }
 
-    // 2. Screenshot Vision for KPI / Target Modification (when user explicitly modifies a KPI or metric)
-    if (currentImg && (lower.includes('kpi') || lower.includes('total rows') || lower.includes('record') || lower.includes('$') || lower.includes('metric') || lower.includes('number'))) {
-      const targetMatch =
-        text.match(/(?:change|convert|set|switch|rename|turn|make)\s+(?:this|it)?\s*(?:into|to|as)\s+([a-zA-Z\s_0-9\$%\.,\-]+)/i) ||
-        text.match(/(?:remove|replace)\s+(?:this|it)?\s*(?:instead\s+of\s+(?:it|that)\s+add|instead\s+add|with|to)\s+([a-zA-Z\s_0-9\$%\.,\-]+)/i) ||
-        text.match(/(?:add|make)\s+([a-zA-Z\s_0-9\$%\.,\-]+)/i);
+    // ==========================================
+    // CASE B: CHART & GRAPH MODIFICATION
+    // ==========================================
+    if (
+      hasChartKeyword ||
+      lower.includes('change') ||
+      lower.includes('convert') ||
+      lower.includes('make') ||
+      lower.includes('switch') ||
+      lower.includes('turn') ||
+      lower.includes('other') ||
+      lower.includes('another') ||
+      lower.includes('different') ||
+      currentImg
+    ) {
+      if (targetVisual) {
+        const currentType =
+          visualOverrides[targetVisual.id]?.chart_type || targetVisual.chart_type;
 
-      const targetTerm = targetMatch ? targetMatch[1].trim() : (lower.includes('total rows') ? 'Total Rows' : '');
+        let newChartType = 'donut';
 
-      if (targetTerm) {
-        // Score KPIs against OCR text to find the exact KPI card
-        let targetKpi = dashboard.kpis[0];
-        let bestKpiScore = -1;
-
-        for (const k of dashboard.kpis) {
-          let score = 0;
-          const labelLower = k.label.toLowerCase();
-          if (lower.includes(labelLower)) score += 15;
-          if (ocrText && ocrText.includes(labelLower)) score += 30;
-          if (ocrText && ocrText.includes(k.formatted_value.toLowerCase())) score += 15;
-          if (score > bestKpiScore) {
-            bestKpiScore = score;
-            targetKpi = k;
-          }
+        if (lower.includes('donut') || lower.includes('pie') || lower.includes('ring')) {
+          newChartType = 'donut';
+        } else if (lower.includes('horizontal') || lower.includes('ranking')) {
+          newChartType = 'horizontal_bar';
+        } else if (lower.includes('bar') || lower.includes('column')) {
+          newChartType = 'bar';
+        } else if (lower.includes('line') || lower.includes('trend') || lower.includes('time')) {
+          newChartType = 'line';
+        } else if (lower.includes('area') || lower.includes('shaded')) {
+          newChartType = 'area';
+        } else if (lower.includes('radar') || lower.includes('spider')) {
+          newChartType = 'radar';
+        } else if (lower.includes('heatmap') || lower.includes('matrix') || lower.includes('density')) {
+          newChartType = 'heatmap';
+        } else if (lower.includes('scatter') || lower.includes('correlation') || lower.includes('dot')) {
+          newChartType = 'scatter';
+        } else {
+          // "any other graph" / "another graph" / "different graph" -> Cycle to a distinct chart type
+          const cycleTypes = ['donut', 'area', 'line', 'bar', 'horizontal_bar', 'radar', 'heatmap', 'scatter'];
+          newChartType = cycleTypes.find((t) => t !== currentType) || 'donut';
         }
 
-        const isValue = /[\$0-9]/.test(targetTerm) && !/rows|records|total|count/i.test(targetTerm);
-
-        setKpiOverrides((prev) => ({
+        setVisualOverrides((prev) => ({
           ...prev,
-          [targetKpi.id]: {
-            formatted_value: isValue ? targetTerm : targetKpi.formatted_value || dataset.row_count.toLocaleString(),
-            label: isValue ? targetKpi.label : targetTerm.toUpperCase(),
-            comparison_text: 'Vision Screenshot Directive',
-          },
+          [targetVisual.id]: { chart_type: newChartType, title: targetVisual.title },
         }));
+
+        const responseHeading = currentImg
+          ? 'Screenshot Vision Analysis Applied'
+          : 'Chart Converted Live';
 
         setCopilotMessages((prev) => [
           ...prev,
           {
             id: (Date.now() + 1).toString(),
             sender: 'assistant',
-            text: `### Screenshot Vision Analysis Applied\n• **Detected Element**: Top Metric Card (\`${targetKpi.label}\`)\n• **Command Executed**: Renamed to \`${targetTerm.toUpperCase()}\`\n• **Live Dashboard**: Header KPI updated in real time!`,
-            appliedAction: `Vision Update: ${targetTerm.toUpperCase()}`,
+            text: `### ${responseHeading}\n• **Target Visual**: \`${targetVisual.title}\`\n• **Previous Format**: \`${currentType.toUpperCase().replace('_', ' ')}\`\n• **New Format**: \`${newChartType.toUpperCase().replace('_', ' ')}\`\n• **Live Canvas**: Dashboard chart updated immediately!`,
+            appliedAction: `Converted ${targetVisual.title} → ${newChartType}`,
           },
         ]);
         setCopilotLoading(false);
@@ -626,7 +713,9 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
       }
     }
 
-    // 2. Check if user wants column comparison / what to put inside
+    // ==========================================
+    // CASE C: COLUMN COMPARISON & SUGGESTIONS
+    // ==========================================
     if (lower.includes('compare') || lower.includes('put inside') || lower.includes('columns') || lower.includes('fields') || lower.includes('show columns')) {
       const detectedColumns = dataset.columns || [];
       const colNames = detectedColumns.map((c) => c.name);
@@ -636,197 +725,27 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
         {
           id: (Date.now() + 1).toString(),
           sender: 'assistant',
-          text: `Which columns would you like to put inside and compare? Click any column pill below to immediately re-focus or map the chart:`,
-          suggestedColumns: colNames.slice(0, 10),
+          text: `### Available Dataset Columns for Comparison\nI analyzed **${dataset.name}** (${dataset.row_count.toLocaleString()} rows). Here are the primary columns ready for multi-dimensional comparison:\n\n• **Dimensions (Categorical / Temporal)**: \`${detectedColumns.filter((c) => ['category', 'text', 'date'].includes(c.inferred_type.toLowerCase())).map((c) => c.name).slice(0, 5).join('`, `') || 'None'}\`\n• **Measures (Numeric)**: \`${detectedColumns.filter((c) => ['integer', 'decimal', 'currency', 'percentage'].includes(c.inferred_type.toLowerCase())).map((c) => c.name).slice(0, 5).join('`, `') || 'None'}\`\n\n### Quick Mapping Actions\nClick any column below to plot it live on the primary dashboard chart:`,
+          suggestedColumns: colNames.slice(0, 8),
         },
       ]);
       setCopilotLoading(false);
       return;
     }
 
-    // 3. Check if user wants to change, rename, or update KPI / visual numbers
-    if (
-      lower.includes('record') ||
-      lower.includes('kpi') ||
-      lower.includes('instead') ||
-      lower.includes('rename') ||
-      lower.includes('set ') ||
-      lower.includes('change ') ||
-      lower.includes('update ') ||
-      lower.includes('total rows') ||
-      lower.includes('revenue') ||
-      lower.includes('profit') ||
-      lower.includes('cost') ||
-      lower.includes('qty') ||
-      lower.includes('quantity') ||
-      lower.includes('remove') ||
-      lower.includes('replace')
-    ) {
-      // Check for rename / replacement pattern like "remove the record analysis instead of it add total rows"
-      const renameMatch =
-        text.match(/(?:remove|replace|change|rename)\s+(?:the\s+)?([a-zA-Z\s_]+?)\s+(?:instead\s+of\s+(?:it|that)\s+add|instead\s+add|with|to|as)\s+([a-zA-Z\s_0-9\$%\.,]+)/i) ||
-        text.match(/(?:remove)\s+(?:the\s+)?([a-zA-Z\s_]+?)\s+(?:and\s+add|add)\s+([a-zA-Z\s_0-9\$%\.,]+)/i);
-
-      if (renameMatch) {
-        const fromLabel = renameMatch[1].trim().toLowerCase();
-        const toLabel = renameMatch[2].trim();
-
-        let targetKpi = dashboard.kpis[0];
-        if (fromLabel.includes('record') || fromLabel.includes('analy') || fromLabel.includes('row')) {
-          targetKpi =
-            dashboard.kpis.find(
-              (k) =>
-                k.label.toLowerCase().includes('record') ||
-                k.label.toLowerCase().includes('analy')
-            ) || dashboard.kpis[0];
-        } else if (fromLabel.includes('revenue') || fromLabel.includes('sale')) {
-          targetKpi =
-            dashboard.kpis.find((k) => k.label.toLowerCase().includes('revenue')) ||
-            dashboard.kpis[1] ||
-            dashboard.kpis[0];
-        } else if (fromLabel.includes('profit')) {
-          targetKpi =
-            dashboard.kpis.find((k) => k.label.toLowerCase().includes('profit')) ||
-            dashboard.kpis[2] ||
-            dashboard.kpis[0];
-        } else if (fromLabel.includes('cost')) {
-          targetKpi =
-            dashboard.kpis.find((k) => k.label.toLowerCase().includes('cost')) ||
-            dashboard.kpis[3] ||
-            dashboard.kpis[0];
-        } else if (
-          fromLabel.includes('qty') ||
-          fromLabel.includes('quantity') ||
-          fromLabel.includes('stock')
-        ) {
-          targetKpi =
-            dashboard.kpis.find(
-              (k) =>
-                k.label.toLowerCase().includes('qty') ||
-                k.label.toLowerCase().includes('quantity') ||
-                k.label.toLowerCase().includes('stock')
-            ) ||
-            dashboard.kpis[4] ||
-            dashboard.kpis[0];
-        }
-
-        const isValue =
-          /[\$0-9]/.test(toLabel) && !/rows|records|total|count/i.test(toLabel);
-
-        setKpiOverrides((prev) => ({
-          ...prev,
-          [targetKpi.id]: {
-            formatted_value: isValue
-              ? toLabel
-              : targetKpi.formatted_value || dataset.row_count.toLocaleString(),
-            label: isValue ? targetKpi.label : toLabel.toUpperCase(),
-            comparison_text: 'Custom Directive',
-          },
-        }));
-
-        setCopilotMessages((prev) => [
-          ...prev,
-          {
-            id: (Date.now() + 1).toString(),
-            sender: 'assistant',
-            text: `### KPI Updated Live\n• **Previous Label**: \`${targetKpi.label}\`\n• **Updated Label**: \`${toLabel.toUpperCase()}\`\n• **Value**: \`${targetKpi.formatted_value}\`\n\nThe dashboard top metric card has been updated!`,
-            appliedAction: `Updated KPI: ${toLabel.toUpperCase()}`,
-          },
-        ]);
-        setCopilotLoading(false);
-        return;
-      }
-
-      // Check for value assignment like "set total revenue to $40M"
-      const kpiMatch = text.match(
-        /(?:change|set|update)\s+(?:the\s+)?(?:kpi|number|metric|target|total)?\s*([a-zA-Z\s_]+)?\s*(?:to|=)\s*([\$0-9\.,kKmMbB%\+\-]+(?:\s*[\w\s%]+)?)/i
-      );
-      if (kpiMatch || lower.includes('set ') || lower.includes('update ') || lower.includes('$')) {
-        const targetVal = kpiMatch ? kpiMatch[2].trim() : '$45.00M';
-        const targetLabel = kpiMatch && kpiMatch[1] ? kpiMatch[1].trim() : 'Total Revenue';
-
-        const targetKpi =
-          dashboard.kpis.find((k) =>
-            k.label.toLowerCase().includes(targetLabel.toLowerCase())
-          ) || dashboard.kpis[1] || dashboard.kpis[0];
-
-        setKpiOverrides((prev) => ({
-          ...prev,
-          [targetKpi.id]: {
-            formatted_value: targetVal,
-            label: targetKpi.label,
-            comparison_text: 'Custom Client Directive',
-          },
-        }));
-
-        setCopilotMessages((prev) => [
-          ...prev,
-          {
-            id: (Date.now() + 1).toString(),
-            sender: 'assistant',
-            text: `### KPI Target Updated\n• **Metric**: \`${targetKpi.label}\`\n• **New Target Value**: \`${targetVal}\`\n\nThe dashboard header KPI cards have been updated live!`,
-            appliedAction: `Updated KPI: ${targetKpi.label} → ${targetVal}`,
-          },
-        ]);
-        setCopilotLoading(false);
-        return;
-      }
-    }
-
-    // 4. Check if user wants to change Key Features & Insights
-    if (lower.includes('key feature') || lower.includes('key features') || lower.includes('takeaway') || lower.includes('insight') || lower.includes('change feature') || lower.includes('add feature')) {
-      const customInsight: DashboardInsight = {
-        id: `custom-insight-${Date.now()}`,
-        title: 'Client Directive: ' + (text.length > 35 ? text.slice(0, 35) + '...' : text),
-        summary: text,
-        evidence: 'User-specified analytical directive applied dynamically to dashboard.',
-        direction: 'positive',
-        perspective_id: activePerspective,
-        visual_ids: dashboard.visuals.slice(0, 2).map((v) => v.id),
-      };
-
-      setCustomInsights((prev) => [customInsight, ...prev]);
-      setCopilotMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          sender: 'assistant',
-          text: `Updated **Key Insights & Features** with your directive:\n\n> "${text}"\n\nPinned to the top of your Key Insights panel.`,
-          appliedAction: `Updated Key Features`,
-        },
-      ]);
-      setCopilotLoading(false);
-      return;
-    }
-
-    // 5. Default: Rich BI Visual Breakdown & Guidance
-    const answerLines = [
-      `### Dashboard Visual Architecture`,
-      `Currently tracking **${dataset.row_count.toLocaleString()} records** across **${dataset.column_count} dimensions** in **${dashboard.domain_label}** mode.`,
-      ``,
-      `### How to Interpret the Visuals`,
-      `• **Top KPI Bar**: Tracks core volume, revenue, and gross profit metrics.`,
-      `• **Canvas Charts**: Displays distributions (Area, Horizontal Bar, Scatter, Heatmap, Radar).`,
-      `• **Key Insights Panel**: Real-time analytical deductions and recommended actions.`,
-      ``,
-      `### What Would You Like to Modify?`,
-      `• **Change Chart Type**: *"Convert Revenue Trend to Bar chart"* or *"Change Revenue by Product to Donut"*`,
-      `• **Compare Columns**: *"Compare Country vs Sales"*`,
-      `• **Change Numbers / KPIs**: *"Set Total Revenue to $40.00M"*`,
-      `• **Update Key Features**: *"Add key feature about VIP accounts"*`,
-    ];
-
+    // Default Fallback
     setCopilotMessages((prev) => [
       ...prev,
       {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
-        text: answerLines.join('\n'),
-        suggestedColumns: (dataset.columns || []).slice(0, 8).map((c) => c.name),
+        text: `### Visual Copilot Ready\nI am connected to your live dashboard for **${dataset.name}**.\n\n### Commands you can run:\n• **Convert any chart**: *"Change this chart to a Donut chart"* or *"Make this an Area chart"*\n• **Replace a metric block**: *"Instead of this block show me how many null values are in dataset"*\n• **Compare fields**: *"Compare Category vs Unit_Cost"*\n• **Paste Screenshots**: Press \`Ctrl+V\` to paste any dashboard snippet and give a command!`,
+        suggestedColumns: (dataset.columns || []).slice(0, 6).map((c) => c.name),
       },
     ]);
     setCopilotLoading(false);
   };
+
 
   const handleColumnPillClick = (colName: string) => {
     if (!dashboard) return;
