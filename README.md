@@ -27,6 +27,14 @@ By fusing deterministic precision with autonomous agentic intelligence, Quantra 
 
 ---
 
+## 🎥 Video Demonstration & Platform Walkthrough
+
+[![Quantra Platform Demonstration](assets/thumbnail.png)](assets/quan.MOV)
+
+> **📹 Watch the Full HD Walkthrough**: The complete video demonstration showcasing Quantra's zero-hallucination deterministic engine, OCR vision visual copilot, interactive canvas re-ordering, and DuckDB analytical queries is available in [`assets/quan.MOV`](assets/quan.MOV).
+
+---
+
 ## 🌟 Key Features
 
 - ⚡ **Zero-Hallucination Deterministic Engine**: All analytics, aggregations, and metrics are computed via sandboxed Python/DuckDB code rather than generative assumptions.
