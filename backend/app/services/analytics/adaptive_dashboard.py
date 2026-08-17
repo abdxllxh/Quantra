@@ -62,6 +62,73 @@ class AdaptiveDashboardService:
     """Builds dashboard facts with Pandas, then optionally lets Gemini improve labels only."""
 
     @classmethod
+    def _top_performers_visual(cls, df: pd.DataFrame, categories: List[str], numeric: List[str], variant: int) -> Optional[Tuple[Dict[str, Any], Dict[str, Any]]]:
+        if not categories or not numeric:
+            return None
+        cat_col = categories[(variant + 1) % len(categories)]
+        metric_col = numeric[(variant + 1) % len(numeric)]
+        grouped = df.groupby(cat_col, dropna=False)[metric_col].sum().sort_values(ascending=False).head(6)
+        if grouped.empty:
+            return None
+        data = [{cat_col: str(k), metric_col: round(_finite(v), 2)} for k, v in grouped.items()]
+        visual_id = "top_performers"
+        return ({
+            "id": visual_id,
+            "title": f"Top {metric_col} by {cat_col}",
+            "subtitle": "Contribution breakdown of highest performing segments",
+            "chart_type": "donut",
+            "data": data,
+            "x_key": cat_col,
+            "y_keys": [metric_col],
+            "perspective_ids": ["overview", "composition"],
+            "size": "standard",
+            "value_format": "number",
+        }, {
+            "id": "insight_top_performers",
+            "title": f"{cat_col} Performance Concentration",
+            "summary": f"The top {len(grouped)} {cat_col} segments generate the majority of total observed {metric_col}.",
+            "evidence": f"Top segment: {str(grouped.index[0])} ({_format_number(float(grouped.iloc[0]))}).",
+            "impact": "medium",
+            "direction": "positive",
+            "perspective_id": "composition",
+            "visual_ids": [visual_id],
+        })
+
+    @classmethod
+    def _secondary_breakdown_visual(cls, df: pd.DataFrame, categories: List[str], numeric: List[str], variant: int) -> Optional[Tuple[Dict[str, Any], Dict[str, Any]]]:
+        if len(numeric) < 2:
+            return None
+        met1 = numeric[variant % len(numeric)]
+        met2 = numeric[(variant + 1) % len(numeric)]
+        sorted_df = df[[met1, met2]].dropna().sort_values(by=met1, ascending=False).head(15)
+        if len(sorted_df) < 4:
+            return None
+        data = [{met1: str(round(_finite(row[met1]), 1)), met2: round(_finite(row[met2]), 2)} for _, row in sorted_df.iterrows()]
+        visual_id = "comparative_trend"
+        return ({
+            "id": visual_id,
+            "title": f"{met1} vs {met2} Benchmark",
+            "subtitle": "Comparative volume benchmark across leading records",
+            "chart_type": "area" if variant % 2 == 0 else "line",
+            "data": data,
+            "x_key": met1,
+            "y_keys": [met2],
+            "perspective_ids": ["relationships", "overview"],
+            "size": "standard",
+            "value_format": "number",
+        }, {
+            "id": "insight_comparative",
+            "title": f"{met1} to {met2} Scaling Behavior",
+            "summary": f"Evaluation of top percentile records reveals aligned progression between {met1} and {met2}.",
+            "evidence": f"Top record benchmark: {met1} = {_format_number(float(sorted_df[met1].iloc[0]))}.",
+            "impact": "medium",
+            "direction": "positive",
+            "perspective_id": "relationships",
+            "visual_ids": [visual_id],
+        })
+
+
+    @classmethod
     def build(cls, df: pd.DataFrame, dataset_id: str, version_id: str, dataset_name: str, variant: int = 0) -> Dict[str, Any]:
         working = df.copy()
         dates = cls._date_columns(working)
@@ -110,8 +177,20 @@ class AdaptiveDashboardService:
             insights.append(insight)
 
         volume_result = cls._volume_visual(working, categories, variant)
-        if volume_result and len(visuals) < 8:
+        if volume_result:
             visual, insight = volume_result
+            visuals.append(visual)
+            insights.append(insight)
+
+        top_perf_result = cls._top_performers_visual(working, categories, numeric, variant)
+        if top_perf_result:
+            visual, insight = top_perf_result
+            visuals.append(visual)
+            insights.append(insight)
+
+        comp_result = cls._secondary_breakdown_visual(working, categories, numeric, variant)
+        if comp_result:
+            visual, insight = comp_result
             visuals.append(visual)
             insights.append(insight)
 
