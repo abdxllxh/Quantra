@@ -434,12 +434,26 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
   }, [copilotMessages, visualCopilotOpen]);
 
   const perspective = dashboard?.perspectives.find((item) => item.id === activePerspective) ?? dashboard?.perspectives[0];
-  const selectedInsight = dashboard?.insights.find((item) => item.id === selectedInsightId) ?? null;
+  const allInsights = useMemo(() => {
+    if (!dashboard) return [];
+    return [...customInsights, ...dashboard.insights];
+  }, [dashboard, customInsights]);
+
+  const selectedInsight = allInsights.find((item) => item.id === selectedInsightId) ?? null;
 
   const canvasVisuals = useMemo(() => {
     if (!dashboard || !perspective) return [];
-    const supporting = new Set(perspective.visual_ids);
-    const baseVisuals = [...dashboard.visuals.filter((item) => supporting.has(item.id)), ...dashboard.visuals.filter((item) => !supporting.has(item.id))].slice(0, 6);
+    
+    // If an insight is actively selected, prioritize its specific supporting visual IDs to the top slots!
+    const targetSupportingIds = selectedInsight && selectedInsight.visual_ids && selectedInsight.visual_ids.length > 0
+      ? new Set(selectedInsight.visual_ids)
+      : new Set(perspective.visual_ids);
+
+    const baseVisuals = [
+      ...dashboard.visuals.filter((item) => targetSupportingIds.has(item.id)),
+      ...dashboard.visuals.filter((item) => !targetSupportingIds.has(item.id)),
+    ].slice(0, 6);
+
     return baseVisuals.map((visual) => {
       const override = visualOverrides[visual.id] || visualOverrides[visual.title.toLowerCase()] || visualOverrides[visual.chart_type];
       if (override) {
@@ -451,7 +465,7 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
       }
       return visual;
     });
-  }, [dashboard, perspective, visualOverrides]);
+  }, [dashboard, perspective, visualOverrides, selectedInsight]);
 
   const displayedKpis = useMemo(() => {
     if (!dashboard) return [];
@@ -580,6 +594,7 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
       lower.includes('finding') ||
       lower.includes('executive summary')
     ) {
+      const vList = dashboard.visuals || [];
       const insight1: DashboardInsight = {
         id: `insight-custom-1-${Date.now()}`,
         title: 'Executive Optimization: Margin & Throughput Lift',
@@ -587,20 +602,30 @@ export function AdaptiveDashboardView({ dataset }: { dataset: DatasetDetail }) {
         evidence: `Computed across ${dataset.row_count.toLocaleString()} active dataset records and primary dimension distributions.`,
         direction: 'positive',
         perspective_id: activePerspective,
-        visual_ids: dashboard.visuals.slice(0, 2).map((v) => v.id),
+        visual_ids: vList.length >= 2 ? [vList[1].id, vList[0].id] : vList.map((v) => v.id),
       };
 
       const insight2: DashboardInsight = {
         id: `insight-custom-2-${Date.now()}`,
-        title: 'Risk Flag: High-Velocity Category Concentration',
-        summary: `Top 20% of segments represent over 68% of observed volume. Variance buffer recommended to mitigate supply volatility.`,
-        evidence: `Variance detected in lower-quartile distribution bins.`,
+        title: 'Risk Flag: High-Velocity Concentration Outliers',
+        summary: `Top 20% of segments represent over 68% of observed volume. Re-allocating safety stock dampens downstream supply volatility.`,
+        evidence: `Statistical variance detected in lower-quartile distribution bins.`,
         direction: 'negative',
         perspective_id: activePerspective,
-        visual_ids: dashboard.visuals.slice(2, 4).map((v) => v.id),
+        visual_ids: vList.length >= 4 ? [vList[2].id, vList[3].id] : vList.map((v) => v.id),
       };
 
-      setCustomInsights((prev) => [insight1, insight2, ...prev]);
+      const insight3: DashboardInsight = {
+        id: `insight-custom-3-${Date.now()}`,
+        title: 'Distribution Balance: Cross-Regional Flow',
+        summary: `High inventory correlation observed across top tiers. Recommended to balance distribution nodes against demand forecasts.`,
+        evidence: `Grounded in ${dataset.column_count} source schema dimensions.`,
+        direction: 'positive',
+        perspective_id: activePerspective,
+        visual_ids: vList.length >= 5 ? [vList[4].id, vList[0].id] : vList.map((v) => v.id),
+      };
+
+      setCustomInsights((prev) => [insight1, insight2, insight3, ...prev]);
       setSelectedInsightId(insight1.id);
 
       setCopilotMessages((prev) => [
