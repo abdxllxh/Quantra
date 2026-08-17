@@ -1,0 +1,300 @@
+Customer_ID,Full_Name,Email,Age,Country,City,Signup_Date,Lifetime_Value,Orders_Count,Segment
+CUST-2001,Sarah Walker,sarah.walker0@example.com,41,Germany,Hamburg,2026-05-01,11011.84,33,Loyal
+CUST-2002,Emma Anderson,emma.anderson1@example.com,66,Germany,Berlin,2022-07-01,5714.78,45,Loyal
+CUST-2003,Olivia Brown,olivia.brown2@example.com,53,Australia,Brisbane,2026-03-19,2250.39,26,New
+CUST-2004,Mary Lee,mary.lee3@example.com,19,Canada,Calgary,2025-05-25,3291.92,25,VIP
+CUST-2005,John Brown,john.brown4@example.com,69,Australia,Sydney,2022-09-10,8779.92,27,Loyal
+CUST-2006,James Wilson,james.wilson5@example.com,69,United Kingdom,London,2025-06-03,391.08,3,Loyal
+CUST-2007,James Lee,james.lee6@example.com,18,Germany,Berlin,2022-07-05,986.56,21,New
+CUST-2008,Olivia Taylor,olivia.taylor7@example.com,59,Canada,Calgary,2024-04-19,15085.34,50,Standard
+CUST-2009,Olivia Walker,olivia.walker8@example.com,48,United Kingdom,Leeds,2024-08-15,13018.46,32,Standard
+CUST-2010,Michael Martin,michael.martin9@example.com,59,Canada,Vancouver,2022-10-29,8128.05,26,VIP
+CUST-2011,James Brown,james.brown10@example.com,69,United Kingdom,Manchester,2025-02-20,7980.24,30,New
+CUST-2012,John Wilson,john.wilson11@example.com,68,Australia,Melbourne,2023-08-12,2450.8,19,New
+CUST-2013,Olivia Taylor,olivia.taylor12@example.com,46,United Kingdom,Leeds,2025-09-01,2197.48,7,Standard
+CUST-2014,Daniel Martin,daniel.martin13@example.com,54,United States,Seattle,2026-05-20,4166.35,14,VIP
+CUST-2015,Sarah Wilson,invalid-email,74,United States,Chicago,2025-11-26,6889.61,38,Loyal
+CUST-2016,Mary Wilson,mary.wilson15@example.com,61,Germany,Hamburg,2022-04-11,3714.26,29,Standard
+CUST-2017,Olivia Lee,olivia.lee16@example.com,22,Australia,Brisbane,2024-07-23,2190.37,8,VIP
+CUST-2018,John Wilson,john.wilson17@example.com,50,Germany,Hamburg,2023-03-08,1040.68,6,VIP
+CUST-2019,Olivia Anderson,olivia.anderson18@example.com,25,United Kingdom,Leeds,2024-09-19,13431.45,34,New
+CUST-2020,Emma Wilson,emma.wilson19@example.com,24,Australia,Brisbane,2022-01-14,6723.71,33,New
+CUST-2021,Emma Martin,emma.martin20@example.com,24,Canada,Calgary,2022-04-14,5561.76,24,VIP
+CUST-2022,Daniel Taylor,daniel.taylor21@example.com,31,United States,New York,2024-04-30,1402.71,11,VIP
+CUST-2023,John Anderson,john.anderson22@example.com,23,Germany,Hamburg,2023-05-17,2576.66,41,VIP
+CUST-2024,Sarah Taylor,sarah.taylor23@example.com,71,Canada,Toronto,2024-06-21,7915.37,33,Standard
+CUST-2025,John Anderson,john.anderson24@example.com,60,Australia,Melbourne,2022-01-30,2145.93,20,Loyal
+CUST-2026,David Martin,david.martin25@example.com,26,Canada,Calgary,2024-05-25,11189.3,26,Loyal
+CUST-2027,Emma Martin,emma.martin26@example.com,28,United Kingdom,Leeds,2026-04-15,17006.52,50,VIP
+CUST-2028,Sarah Walker,sarah.walker27@example.com,70,Germany,Berlin,2022-05-12,2470.25,15,Loyal
+CUST-2029,John Martin,john.martin28@example.com,46,Australia,Sydney,2023-06-26,4617.0,18,New
+CUST-2030,James Taylor,james.taylor29@example.com,70,Germany,Munich,2025-05-04,7367.59,35,VIP
+CUST-2031,Emma Taylor,emma.taylor30@example.com,31,Australia,Sydney,2025-02-18,696.74,3,New
+CUST-2032,Mary Hall,mary.hall31@example.com,24,Australia,Melbourne,2025-04-29,12493.73,31,New
+CUST-2033,Sophia Brown,invalid-email,56,United States,Chicago,2022-01-02,7778.29,35,VIP
+CUST-2034,Emma Anderson,emma.anderson33@example.com,28,United Kingdom,London,2023-03-07,6682.55,15,Standard
+CUST-2035,Daniel Smith,daniel.smith34@example.com,30,Australia,Sydney,2024-01-28,602.69,8,VIP
+CUST-2036,Daniel Lee,daniel.lee35@example.com,61,Canada,Calgary,2022-07-19,2846.15,13,New
+CUST-2037,Mary Lee,mary.lee36@example.com,37,United States,Chicago,2022-07-21,5840.63,36,VIP
+CUST-2038,Daniel Brown,daniel.brown37@example.com,40,Germany,Berlin,2023-03-25,7955.69,32,Standard
+CUST-2039,David Lee,david.lee38@example.com,74,Australia,Brisbane,2023-12-19,2451.34,38,New
+CUST-2040,Sarah Martin,sarah.martin39@example.com,40,Germany,Munich,2024-05-11,4389.05,13,Standard
+CUST-2041,Daniel Smith,daniel.smith40@example.com,62,Australia,Sydney,2025-03-16,435.93,1,New
+CUST-2042,James Wilson,james.wilson41@example.com,24,Germany,Munich,2023-05-09,11627.11,36,New
+CUST-2043,Olivia Anderson,olivia.anderson42@example.com,33,United States,Seattle,2022-04-23,3055.5,10,Standard
+CUST-2044,Mary Anderson,mary.anderson43@example.com,69,United States,Seattle,2024-07-07,11898.51,30,Loyal
+CUST-2045,Mary Wilson,mary.wilson44@example.com,69,Germany,Munich,2023-11-07,10297.97,23,New
+CUST-2046,Sophia Wilson,sophia.wilson45@example.com,72,United Kingdom,London,2023-06-10,4008.68,9,Standard
+CUST-2047,Michael Clark,michael.clark46@example.com,37,Canada,Vancouver,2023-03-27,1717.3,36,VIP
+CUST-2048,Michael Wilson,michael.wilson47@example.com,54,United States,Chicago,2023-04-04,362.7,4,Loyal
+CUST-2049,Michael Wilson,michael.wilson48@example.com,19,Germany,Hamburg,2025-10-04,81.21,1,New
+CUST-2050,Daniel Clark,daniel.clark49@example.com,29,United Kingdom,Leeds,2022-12-29,3294.52,33,Standard
+CUST-2051,James Walker,james.walker50@example.com,23,Canada,Toronto,2023-09-27,2712.29,32,Standard
+CUST-2052,Mary Clark,mary.clark51@example.com,42,Australia,Melbourne,2024-12-22,5465.86,15,Loyal
+CUST-2053,Michael Smith,michael.smith52@example.com,31,United Kingdom,Leeds,2024-07-29,6272.77,22,VIP
+CUST-2054,Emma Taylor,emma.taylor53@example.com,49,Germany,Munich,2023-01-23,2450.67,11,Loyal
+CUST-2055,Daniel Taylor,daniel.taylor54@example.com,18,United States,Seattle,2023-06-10,4256.09,20,New
+CUST-2056,Daniel Hall,daniel.hall55@example.com,39,Canada,Calgary,2025-05-29,2865.58,19,VIP
+CUST-2057,John Martin,john.martin56@example.com,64,Germany,Munich,2024-11-28,2808.11,22,Standard
+CUST-2058,Sarah Walker,sarah.walker57@example.com,46,Australia,Sydney,2024-09-09,6324.37,48,New
+CUST-2059,Sarah Brown,sarah.brown58@example.com,18,United Kingdom,Leeds,2023-02-19,4602.98,21,VIP
+CUST-2060,Daniel Clark,daniel.clark59@example.com,61,Australia,Sydney,2022-05-19,9530.24,29,New
+CUST-2061,Daniel Smith,daniel.smith60@example.com,145,United Kingdom,Leeds,2026-04-24,6991.8,20,Standard
+CUST-2062,Olivia Taylor,olivia.taylor61@example.com,65,United Kingdom,Leeds,2024-11-12,3956.97,14,New
+CUST-2063,John Martin,john.martin62@example.com,41,United Kingdom,Leeds,2025-01-05,8010.98,33,Loyal
+CUST-2064,David Brown,david.brown63@example.com,44,Australia,Brisbane,2023-01-26,19759.64,48,New
+CUST-2065,Olivia Taylor,olivia.taylor64@example.com,62,Canada,Vancouver,2023-10-13,742.8,9,VIP
+CUST-2066,Emma Smith,emma.smith65@example.com,46,Germany,Berlin,2022-08-18,3035.35,11,New
+CUST-2067,James Taylor,james.taylor66@example.com,31,Germany,Munich,2023-05-12,6943.99,33,New
+CUST-2068,Sarah Wilson,sarah.wilson67@example.com,61,Germany,Munich,2026-04-29,6278.43,31,New
+CUST-2069,James Martin,james.martin68@example.com,34,United Kingdom,London,2024-01-12,3653.53,17,Standard
+CUST-2070,Emma Smith,emma.smith69@example.com,18,United Kingdom,London,2022-05-29,3754.33,28,Standard
+CUST-2071,John Smith,john.smith70@example.com,25,Canada,Vancouver,2022-02-21,8704.82,20,VIP
+CUST-2072,Daniel Anderson,daniel.anderson71@example.com,60,Germany,Munich,2024-06-03,7768.54,18,VIP
+CUST-2073,John Smith,john.smith72@example.com,36,Australia,Melbourne,2024-05-22,10476.55,26,Standard
+CUST-2074,Sophia Taylor,sophia.taylor73@example.com,63,Australia,Brisbane,2025-09-28,13268.38,33,VIP
+CUST-2075,Daniel Taylor,daniel.taylor74@example.com,46,Australia,Brisbane,2024-06-14,6107.9,33,VIP
+CUST-2076,Emma Martin,emma.martin75@example.com,67,Germany,Berlin,2024-12-19,11383.46,28,VIP
+CUST-2077,James Anderson,james.anderson76@example.com,30,Germany,Berlin,2025-10-16,13400.14,50,Loyal
+CUST-2078,Emma Hall,emma.hall77@example.com,50,United Kingdom,London,2022-05-18,12404.51,40,Standard
+CUST-2079,Mary Martin,mary.martin78@example.com,20,Germany,Berlin,2022-01-05,6857.63,33,New
+CUST-2080,Mary Hall,mary.hall79@example.com,63,United Kingdom,London,2024-02-26,13505.96,42,New
+CUST-2081,Olivia Walker,olivia.walker80@example.com,25,United Kingdom,London,2023-03-24,10442.03,49,New
+CUST-2082,Michael Taylor,michael.taylor81@example.com,74,Australia,Melbourne,2025-06-21,366.34,2,VIP
+CUST-2083,Sophia Hall,sophia.hall82@example.com,43,United Kingdom,Leeds,2023-06-20,13843.99,46,New
+CUST-2084,David Anderson,david.anderson83@example.com,64,United Kingdom,Leeds,2025-03-26,144.55,1,Standard
+CUST-2085,Michael Anderson,michael.anderson84@example.com,51,Canada,Toronto,2024-08-25,3116.42,10,VIP
+CUST-2086,Olivia Smith,olivia.smith85@example.com,66,Canada,Vancouver,2024-03-16,18499.2,47,Standard
+CUST-2087,Sarah Clark,sarah.clark86@example.com,49,United Kingdom,Leeds,2023-03-23,7864.17,38,New
+CUST-2088,James Martin,james.martin87@example.com,68,Germany,Munich,2024-10-05,3347.53,46,Loyal
+CUST-2089,James Wilson,james.wilson88@example.com,53,Canada,Calgary,2022-11-23,2568.03,46,New
+CUST-2090,Emma Lee,invalid-email,40,Canada,Calgary,2022-07-14,13134.64,32,Standard
+CUST-2091,Olivia Taylor,olivia.taylor90@example.com,33,Canada,Toronto,2024-12-29,3974.97,26,New
+CUST-2092,Olivia Lee,olivia.lee91@example.com,34,United Kingdom,Leeds,2022-08-14,2805.53,10,Standard
+CUST-2093,David Hall,david.hall92@example.com,32,United States,New York,2025-09-02,14717.14,44,VIP
+CUST-2094,Sarah Hall,sarah.hall93@example.com,61,Australia,Brisbane,2022-01-06,8133.74,31,New
+CUST-2095,James Wilson,james.wilson94@example.com,63,Germany,Hamburg,2023-01-15,11328.56,32,New
+CUST-2096,Sarah Wilson,sarah.wilson95@example.com,28,Canada,Calgary,2026-04-02,1981.87,6,Loyal
+CUST-2097,Olivia Walker,olivia.walker96@example.com,33,United States,Chicago,2025-11-23,13885.6,42,New
+CUST-2098,Emma Lee,emma.lee97@example.com,53,Germany,Munich,2025-12-22,6737.98,18,VIP
+CUST-2099,Emma Anderson,emma.anderson98@example.com,45,Germany,Berlin,2022-11-23,726.29,12,New
+CUST-2100,Daniel Hall,daniel.hall99@example.com,37,Australia,Brisbane,2024-03-15,193.59,2,VIP
+CUST-2101,Daniel Taylor,daniel.taylor100@example.com,73,United States,Seattle,2023-02-19,15043.32,50,VIP
+CUST-2102,Daniel Clark,daniel.clark101@example.com,65,Canada,Vancouver,2025-04-14,4899.49,17,VIP
+CUST-2103,Daniel Taylor,daniel.taylor102@example.com,50,Australia,Brisbane,2024-01-31,5900.06,28,Standard
+CUST-2104,John Clark,john.clark103@example.com,34,Australia,Brisbane,2026-06-01,1470.38,10,Standard
+CUST-2105,John Anderson,john.anderson104@example.com,20,United Kingdom,Manchester,2025-07-27,1710.63,23,Loyal
+CUST-2106,James Martin,james.martin105@example.com,44,Germany,Munich,2022-09-13,2472.73,44,New
+CUST-2107,Sarah Brown,sarah.brown106@example.com,63,Germany,Hamburg,2025-08-27,6666.34,18,Standard
+CUST-2108,Emma Clark,emma.clark107@example.com,58,Canada,Toronto,2022-11-26,12858.45,44,New
+CUST-2109,David Brown,david.brown108@example.com,47,United Kingdom,Manchester,2022-08-13,11404.04,44,Standard
+CUST-2110,Mary Anderson,mary.anderson109@example.com,48,United States,Chicago,2022-11-10,10482.21,50,Standard
+CUST-2111,Daniel Taylor,daniel.taylor110@example.com,24,USA,Calgary,2026-03-20,907.38,4,Standard
+CUST-2112,David Martin,david.martin111@example.com,57,U.S.A,Sydney,2024-05-26,832.32,17,VIP
+CUST-2113,Daniel Taylor,daniel.taylor112@example.com,22,Germany,Hamburg,2024-02-04,3099.79,30,New
+CUST-2114,Emma Lee,emma.lee113@example.com,38,Australia,Melbourne,2025-11-25,11194.16,40,Standard
+CUST-2115,Emma Taylor,emma.taylor114@example.com,23,United States,Seattle,2022-06-24,2902.61,20,VIP
+CUST-2116,Emma Taylor,emma.taylor115@example.com,25,Germany,Munich,2023-11-16,5297.19,14,VIP
+CUST-2117,Sophia Wilson,sophia.wilson116@example.com,27,Australia,Sydney,2024-07-22,9206.84,27,Loyal
+CUST-2118,Michael Walker,michael.walker117@example.com,30,United States,Seattle,2026-04-11,4873.1,29,Standard
+CUST-2119,David Martin,david.martin118@example.com,40,Canada,Vancouver,2025-07-31,3331.99,20,Loyal
+CUST-2120,Sarah Clark,sarah.clark119@example.com,62,Australia,Sydney,2022-05-14,3755.02,14,VIP
+CUST-2121,Sarah Anderson,sarah.anderson120@example.com,34,United States,New York,2024-07-26,3852.2,15,New
+CUST-2122,David Clark,david.clark121@example.com,21,Canada,Toronto,2024-12-29,4164.64,19,New
+CUST-2123,Emma Walker,emma.walker122@example.com,68,Germany,Hamburg,2025-05-17,7804.0,20,New
+CUST-2124,Michael Anderson,michael.anderson123@example.com,29,United States,Seattle,2022-11-11,1346.85,14,New
+CUST-2125,Olivia Wilson,olivia.wilson124@example.com,30,United States,Seattle,2022-02-25,11350.1,46,New
+CUST-2126,Mary Anderson,mary.anderson125@example.com,50,United Kingdom,London,2023-08-10,11402.81,31,Standard
+CUST-2127,Michael Clark,michael.clark126@example.com,33,United States,New York,2025-04-06,11997.62,31,New
+CUST-2128,David Hall,david.hall127@example.com,26,Australia,Brisbane,2025-09-05,709.34,2,VIP
+CUST-2129,Emma Hall,emma.hall128@example.com,75,Canada,Calgary,2023-06-08,7557.88,34,Loyal
+CUST-2130,David Walker,david.walker129@example.com,70,Australia,Sydney,2022-10-13,7235.08,34,Loyal
+CUST-2131,Daniel Clark,daniel.clark130@example.com,28,Germany,Munich,2025-06-04,3728.61,18,Standard
+CUST-2132,Mary Smith,mary.smith131@example.com,22,Australia,Sydney,2026-02-02,4523.24,16,Standard
+CUST-2133,David Walker,david.walker132@example.com,66,United Kingdom,Manchester,2023-01-21,11438.15,34,Standard
+CUST-2134,Michael Lee,michael.lee133@example.com,26,United States,New York,2023-06-23,13383.07,49,VIP
+CUST-2135,Olivia Lee,olivia.lee134@example.com,55,United Kingdom,London,2022-12-10,2451.15,8,Standard
+CUST-2136,James Brown,james.brown135@example.com,32,Australia,Sydney,2023-03-10,3081.71,13,New
+CUST-2137,Sarah Wilson,sarah.wilson136@example.com,35,United States,Seattle,2023-08-14,6935.39,30,Loyal
+CUST-2138,John Brown,john.brown137@example.com,56,United Kingdom,London,2022-12-07,10509.47,45,Standard
+CUST-2139,David Smith,david.smith138@example.com,57,Germany,Berlin,2022-03-28,9001.52,36,VIP
+CUST-2140,Mary Lee,mary.lee139@example.com,69,United States,New York,2024-10-09,2997.95,25,Loyal
+CUST-2141,Sophia Brown,sophia.brown140@example.com,37,United Kingdom,London,2022-05-10,434.41,2,Standard
+CUST-2142,David Walker,david.walker141@example.com,34,United States,Seattle,2022-09-11,2942.98,12,Standard
+CUST-2143,Mary Wilson,mary.wilson142@example.com,50,United States,Seattle,2024-12-01,658.46,8,VIP
+CUST-2144,Sophia Wilson,invalid-email,75,United Kingdom,London,2025-04-01,9511.77,36,Loyal
+CUST-2145,Sophia Lee,sophia.lee144@example.com,55,United Kingdom,London,2022-04-17,10046.16,25,VIP
+CUST-2146,Sophia Clark,sophia.clark145@example.com,55,United States,Seattle,2026-02-09,2778.92,25,Standard
+CUST-2147,Michael Walker,michael.walker146@example.com,63,Germany,Berlin,2022-12-02,4231.57,21,VIP
+CUST-2148,Michael Martin,michael.martin147@example.com,47,Germany,Munich,2025-02-14,4600.27,11,Standard
+CUST-2149,Michael Taylor,michael.taylor148@example.com,73,Germany,Munich,2023-02-12,847.88,3,Standard
+CUST-2150,John Hall,john.hall149@example.com,65,Germany,Munich,2025-08-24,12370.48,37,VIP
+CUST-2151,Daniel Clark,daniel.clark150@example.com,39,Canada,Vancouver,2026-01-26,4968.69,26,VIP
+CUST-2152,John Smith,john.smith151@example.com,61,United States,New York,2025-04-01,17636.11,45,Standard
+CUST-2153,Emma Hall,emma.hall152@example.com,30,Germany,Munich,2026-01-06,10321.9,30,VIP
+CUST-2154,Mary Taylor,mary.taylor153@example.com,45,Germany,Hamburg,2024-03-07,1009.91,13,Standard
+CUST-2155,James Wilson,james.wilson154@example.com,32,United Kingdom,London,2023-07-10,16602.39,40,Standard
+CUST-2156,Daniel Lee,daniel.lee155@example.com,28,United Kingdom,Manchester,2022-12-29,7421.27,29,New
+CUST-2157,James Martin,james.martin156@example.com,63,United States,New York,2025-12-27,5187.29,32,New
+CUST-2158,James Lee,james.lee157@example.com,62,United States,Chicago,2022-12-16,8031.65,27,Standard
+CUST-2159,David Hall,david.hall158@example.com,69,Australia,Sydney,2024-12-30,16402.19,40,Loyal
+CUST-2160,Sarah Brown,sarah.brown159@example.com,40,Canada,Vancouver,2023-05-22,18717.11,49,Standard
+CUST-2161,Daniel Clark,daniel.clark160@example.com,63,Canada,Toronto,2026-05-22,9075.53,40,VIP
+CUST-2162,Mary Taylor,mary.taylor161@example.com,72,Canada,Toronto,2025-03-24,2503.12,6,New
+CUST-2163,Emma Smith,emma.smith162@example.com,45,United Kingdom,Leeds,2022-03-22,2443.85,32,Standard
+CUST-2164,Mary Wilson,mary.wilson163@example.com,19,United States,New York,2025-09-26,8359.25,25,VIP
+CUST-2165,John Anderson,john.anderson164@example.com,42,Canada,Vancouver,2022-02-28,10794.46,36,Standard
+CUST-2166,Mary Hall,mary.hall165@example.com,61,United States,Chicago,2022-03-18,4646.99,19,New
+CUST-2167,Sophia Anderson,sophia.anderson166@example.com,25,United States,Seattle,2026-04-30,2457.58,8,New
+CUST-2168,James Brown,james.brown167@example.com,32,Germany,Munich,2022-04-07,2698.63,35,VIP
+CUST-2169,Emma Anderson,emma.anderson168@example.com,28,United Kingdom,Leeds,2024-07-18,6375.32,24,Standard
+CUST-2170,Mary Anderson,mary.anderson169@example.com,64,United States,Seattle,2022-05-12,4683.28,11,Loyal
+CUST-2171,Sophia Smith,sophia.smith170@example.com,23,Australia,Brisbane,2026-03-08,1117.86,14,New
+CUST-2172,John Walker,invalid-email,19,Australia,Sydney,2022-06-19,19663.5,45,Standard
+CUST-2173,Emma Smith,emma.smith172@example.com,66,Germany,Berlin,2022-12-19,2978.3,19,Loyal
+CUST-2174,Sophia Smith,sophia.smith173@example.com,67,Canada,Vancouver,2022-08-01,3880.42,16,VIP
+CUST-2175,Daniel Lee,daniel.lee174@example.com,36,United Kingdom,Manchester,2025-06-28,3132.87,21,Loyal
+CUST-2176,David Taylor,david.taylor175@example.com,24,Australia,Brisbane,2022-12-23,3662.73,33,Standard
+CUST-2177,James Smith,james.smith176@example.com,66,Canada,Calgary,2024-01-24,8312.55,44,Standard
+CUST-2178,Sarah Lee,sarah.lee177@example.com,30,United Kingdom,London,2024-05-09,2721.78,47,Standard
+CUST-2179,John Taylor,john.taylor178@example.com,74,Australia,Brisbane,2023-12-25,2758.43,15,VIP
+CUST-2180,David Walker,david.walker179@example.com,38,United States,New York,2026-02-08,4497.0,15,Standard
+CUST-2181,Michael Smith,michael.smith180@example.com,45,Germany,Munich,2024-04-20,233.5,1,Standard
+CUST-2182,Daniel Brown,daniel.brown181@example.com,30,United States,Seattle,2025-09-04,6171.48,49,Standard
+CUST-2183,Emma Walker,emma.walker182@example.com,58,Germany,Munich,2024-10-11,3853.41,10,Loyal
+CUST-2184,Olivia Clark,olivia.clark183@example.com,39,United Kingdom,Leeds,2024-01-19,12548.29,50,Standard
+CUST-2185,James Brown,james.brown184@example.com,22,United Kingdom,Leeds,2025-04-22,4865.01,34,VIP
+CUST-2186,Daniel Clark,daniel.clark185@example.com,66,United States,New York,2024-10-22,718.5,2,Loyal
+CUST-2187,James Martin,james.martin186@example.com,48,United States,Seattle,2023-05-25,14091.99,33,New
+CUST-2188,David Martin,david.martin187@example.com,62,Australia,Melbourne,2023-01-19,1621.5,17,New
+CUST-2189,Michael Martin,michael.martin188@example.com,49,Canada,Vancouver,2026-03-27,7265.07,31,VIP
+CUST-2190,John Wilson,john.wilson189@example.com,64,United Kingdom,Leeds,2023-03-14,3962.75,23,New
+CUST-2191,Sarah Anderson,sarah.anderson190@example.com,68,United States,New York,2026-04-29,3332.44,14,New
+CUST-2192,Michael Taylor,michael.taylor191@example.com,-5,Germany,Berlin,2022-06-19,5669.71,26,Loyal
+CUST-2193,David Brown,david.brown192@example.com,59,Australia,Melbourne,2023-03-20,5538.63,21,VIP
+CUST-2194,Sophia Clark,sophia.clark193@example.com,66,United Kingdom,Leeds,2025-04-17,20044.95,50,Standard
+CUST-2195,John Wilson,john.wilson194@example.com,50,United Kingdom,London,2023-07-18,1463.61,4,VIP
+CUST-2196,Michael Martin,michael.martin195@example.com,22,Canada,Calgary,2025-11-20,8187.31,46,VIP
+CUST-2197,John Taylor,john.taylor196@example.com,18,Australia,Brisbane,2026-05-11,4266.74,17,New
+CUST-2198,Sarah Taylor,sarah.taylor197@example.com,65,United States,Chicago,2026-01-05,7520.87,46,VIP
+CUST-2199,Daniel Martin,daniel.martin198@example.com,60,Germany,Berlin,2025-10-05,6380.69,32,Loyal
+CUST-2200,Daniel Wilson,daniel.wilson199@example.com,75,Australia,Sydney,2026-02-27,9049.35,42,VIP
+CUST-2201,John Clark,john.clark200@example.com,42,United States,New York,2026-01-18,1046.61,9,VIP
+CUST-2202,David Walker,david.walker201@example.com,67,Australia,Melbourne,2023-12-27,17027.54,45,VIP
+CUST-2203,Emma Walker,emma.walker202@example.com,45,Australia,Sydney,2024-12-26,387.0,6,Loyal
+CUST-2204,Sarah Anderson,sarah.anderson203@example.com,33,Germany,Hamburg,2026-02-17,1705.52,5,New
+CUST-2205,Olivia Lee,olivia.lee204@example.com,56,Canada,Calgary,2024-07-07,3888.56,11,VIP
+CUST-2206,Emma Brown,emma.brown205@example.com,59,Australia,Sydney,2023-07-01,15816.75,46,Loyal
+CUST-2207,John Walker,john.walker206@example.com,51,United Kingdom,Manchester,2024-06-14,2072.71,6,Standard
+CUST-2208,Daniel Anderson,daniel.anderson207@example.com,40,Australia,Brisbane,2025-02-19,2701.82,19,Standard
+CUST-2209,Mary Clark,mary.clark208@example.com,33,Australia,Melbourne,2023-02-12,1592.95,29,Loyal
+CUST-2210,Sarah Wilson,sarah.wilson209@example.com,21,Germany,Berlin,2024-11-05,2002.74,30,Standard
+CUST-2211,Sophia Clark,sophia.clark210@example.com,51,United Kingdom,London,2024-09-13,2833.89,19,Standard
+CUST-2212,Sophia Taylor,sophia.taylor211@example.com,62,United States,Chicago,2026-04-25,2291.04,17,VIP
+CUST-2213,David Wilson,david.wilson212@example.com,52,Australia,Melbourne,2023-03-19,1310.92,5,Standard
+CUST-2214,David Hall,david.hall213@example.com,61,United Kingdom,London,2025-09-04,7960.66,21,New
+CUST-2215,David Clark,david.clark214@example.com,58,United Kingdom,Manchester,2025-03-31,15757.82,44,New
+CUST-2216,Emma Lee,emma.lee215@example.com,25,Canada,Toronto,2025-11-15,7927.48,43,VIP
+CUST-2217,Mary Brown,mary.brown216@example.com,72,Germany,Berlin,2023-11-07,5670.19,40,New
+CUST-2218,James Wilson,james.wilson217@example.com,18,Canada,Vancouver,2023-01-29,3689.14,19,VIP
+CUST-2219,James Brown,james.brown218@example.com,49,Australia,Melbourne,2022-03-21,9477.11,24,VIP
+CUST-2220,David Wilson,david.wilson219@example.com,22,Germany,Berlin,2024-05-04,3968.24,11,VIP
+CUST-2221,Olivia Hall,olivia.hall220@example.com,23,United States,New York,2024-01-21,10329.67,29,VIP
+CUST-2222,Emma Smith,emma.smith221@example.com,24,Canada,Calgary,2026-06-17,3017.73,9,Standard
+CUST-2223,Olivia Walker,olivia.walker222@example.com,36,United States,Chicago,2024-01-10,10717.15,43,VIP
+CUST-2224,James Smith,james.smith223@example.com,47,Australia,Melbourne,2023-05-24,11231.09,43,Standard
+CUST-2225,Emma Anderson,emma.anderson224@example.com,23,Canada,Calgary,2026-03-04,4123.4,35,Standard
+CUST-2226,Sarah Lee,sarah.lee225@example.com,74,Canada,Toronto,2023-09-05,1847.63,24,New
+CUST-2227,John Smith,john.smith226@example.com,26,United States,New York,2023-08-10,2035.89,9,New
+CUST-2228,James Smith,james.smith227@example.com,69,Australia,Sydney,2025-06-16,12383.8,29,Loyal
+CUST-2229,Sophia Lee,sophia.lee228@example.com,64,Australia,Sydney,2024-05-26,10467.98,46,New
+CUST-2230,Sophia Hall,sophia.hall229@example.com,50,Australia,Sydney,not-a-date,706.57,2,Standard
+CUST-2231,John Martin,john.martin230@example.com,20,United States,Seattle,2025-10-26,905.17,17,Standard
+CUST-2232,John Smith,john.smith231@example.com,27,Australia,Sydney,2026-04-21,17032.59,38,VIP
+CUST-2233,Sophia Hall,sophia.hall232@example.com,42,Australia,Melbourne,2023-01-24,6436.56,32,New
+CUST-2234,Daniel Brown,daniel.brown233@example.com,43,Australia,Sydney,2023-07-29,19349.24,44,Standard
+CUST-2235,Olivia Taylor,olivia.taylor234@example.com,38,Australia,Brisbane,2024-04-19,3447.9,41,New
+CUST-2236,David Walker,david.walker235@example.com,35,United Kingdom,Leeds,2023-04-04,260.25,1,Loyal
+CUST-2237,Sarah Anderson,sarah.anderson236@example.com,18,Australia,Sydney,2022-06-04,3577.72,16,New
+CUST-2238,Mary Anderson,mary.anderson237@example.com,71,Germany,Berlin,2024-11-22,3198.38,50,Standard
+CUST-2239,Mary Anderson,mary.anderson238@example.com,56,Australia,Sydney,2023-07-09,5313.07,13,New
+CUST-2240,Emma Brown,emma.brown239@example.com,37,Germany,Munich,2026-06-15,5867.52,31,New
+CUST-2241,Michael Smith,michael.smith240@example.com,43,United States,New York,2026-06-30,7448.0,37,New
+CUST-2242,Olivia Clark,olivia.clark241@example.com,69,Canada,Vancouver,2023-09-17,3423.69,32,VIP
+CUST-2243,James Hall,james.hall242@example.com,74,United Kingdom,Leeds,2023-08-28,1315.29,11,New
+CUST-2244,Olivia Anderson,olivia.anderson243@example.com,22,United Kingdom,London,2024-04-03,546.59,2,New
+CUST-2245,Michael Anderson,michael.anderson244@example.com,35,United Kingdom,Leeds,2025-06-15,12061.44,27,VIP
+CUST-2246,Emma Wilson,emma.wilson245@example.com,37,United States,New York,2023-03-02,4175.21,15,VIP
+CUST-2247,Sarah Taylor,sarah.taylor246@example.com,19,Germany,Hamburg,2025-09-17,4038.15,41,VIP
+CUST-2248,Emma Brown,emma.brown247@example.com,27,Australia,Melbourne,2024-03-03,8728.87,40,Standard
+CUST-2249,Daniel Brown,daniel.brown248@example.com,59,Canada,Calgary,2024-11-03,3573.4,38,Standard
+CUST-2250,Sarah Taylor,sarah.taylor249@example.com,53,Australia,Brisbane,2022-05-04,1050.66,19,New
+CUST-2251,David Smith,david.smith250@example.com,67,United Kingdom,Leeds,2025-01-31,2835.48,26,New
+CUST-2252,Olivia Martin,olivia.martin251@example.com,21,Germany,Hamburg,2025-09-14,7459.29,17,Loyal
+CUST-2253,Olivia Walker,olivia.walker252@example.com,57,Canada,Toronto,2024-12-21,6428.22,23,New
+CUST-2254,Michael Anderson,michael.anderson253@example.com,70,Australia,Melbourne,2025-03-08,6814.58,25,New
+CUST-2255,James Martin,james.martin254@example.com,34,United States,Seattle,2023-12-02,4777.11,14,VIP
+CUST-2256,Olivia Brown,olivia.brown255@example.com,24,United Kingdom,Manchester,2023-01-04,6185.88,15,VIP
+CUST-2257,Sarah Taylor,sarah.taylor256@example.com,43,United States,New York,2023-03-24,452.91,6,New
+CUST-2258,David Clark,david.clark257@example.com,61,Australia,Brisbane,2025-01-13,5499.95,31,New
+CUST-2259,David Clark,david.clark258@example.com,43,United Kingdom,London,2022-04-04,9210.49,34,New
+CUST-2260,Sarah Wilson,sarah.wilson259@example.com,48,Australia,Sydney,2022-03-21,4146.64,31,New
+CUST-2261,James Walker,james.walker260@example.com,19,United Kingdom,London,2023-06-17,9535.18,25,Loyal
+CUST-2262,John Lee,john.lee261@example.com,43,Canada,Toronto,2026-05-15,9780.24,28,Loyal
+CUST-2263,Sophia Martin,sophia.martin262@example.com,19,United States,Seattle,2026-01-07,2687.8,25,VIP
+CUST-2264,Mary Taylor,mary.taylor263@example.com,45,United States,Seattle,2025-09-05,2802.21,11,Standard
+CUST-2265,Emma Smith,emma.smith264@example.com,36,Canada,Vancouver,2024-07-09,17289.08,48,New
+CUST-2266,Olivia Clark,olivia.clark265@example.com,55,United Kingdom,London,2024-10-01,7191.9,29,Loyal
+CUST-2267,James Lee,james.lee266@example.com,48,Australia,Melbourne,2023-04-24,6025.71,32,New
+CUST-2268,James Lee,james.lee267@example.com,47,Canada,Calgary,2025-09-08,3264.19,12,Loyal
+CUST-2269,Olivia Wilson,olivia.wilson268@example.com,43,Canada,Toronto,2026-02-27,2273.24,12,VIP
+CUST-2270,David Anderson,david.anderson269@example.com,65,Germany,Berlin,2024-09-18,3210.08,22,New
+CUST-2271,John Martin,john.martin270@example.com,21,United Kingdom,Leeds,2022-11-26,1077.41,13,Loyal
+CUST-2272,Sophia Wilson,sophia.wilson271@example.com,54,United Kingdom,Manchester,2022-10-24,5657.9,14,VIP
+CUST-2273,Mary Clark,mary.clark272@example.com,40,Australia,Brisbane,2022-03-20,3110.44,46,Loyal
+CUST-2274,Mary Walker,mary.walker273@example.com,20,Germany,Munich,2025-10-20,983.04,16,Standard
+CUST-2275,David Brown,david.brown274@example.com,18,Germany,Berlin,2023-05-08,1593.89,26,New
+CUST-2276,Mary Taylor,mary.taylor275@example.com,37,Germany,Berlin,2025-05-23,820.36,16,New
+CUST-2277,Sarah Smith,sarah.smith276@example.com,25,United Kingdom,London,2022-01-05,1872.36,17,Standard
+CUST-2278,Emma Lee,emma.lee277@example.com,47,United States,Seattle,2023-06-22,1507.95,15,New
+CUST-2279,Emma Lee,emma.lee278@example.com,60,United Kingdom,Leeds,2022-02-24,10392.07,25,VIP
+CUST-2280,Sarah Brown,sarah.brown279@example.com,38,Germany,Munich,2024-07-23,2836.36,10,Standard
+CUST-2282,Mary Walker,mary.walker281@example.com,70,United States,Seattle,2023-10-15,1947.0,14,Standard
+CUST-2283,John Smith,john.smith282@example.com,75,Canada,Vancouver,2022-09-02,5144.14,19,New
+CUST-2284,David Hall,david.hall283@example.com,40,Canada,Toronto,2023-09-28,1526.63,14,Loyal
+CUST-2285,John Hall,john.hall284@example.com,27,United States,Seattle,2025-11-27,16312.66,40,VIP
+CUST-2286,Daniel Hall,daniel.hall285@example.com,30,Australia,Melbourne,2026-03-05,1521.01,18,VIP
+CUST-2287,Olivia Brown,olivia.brown286@example.com,36,United States,New York,2024-04-22,7744.47,29,VIP
+CUST-2288,David Brown,david.brown287@example.com,69,Germany,Hamburg,2024-09-18,557.28,6,Standard
+CUST-2289,James Brown,james.brown288@example.com,68,United States,Seattle,2026-04-02,12814.28,48,New
+CUST-2290,Mary Walker,mary.walker289@example.com,25,Australia,Brisbane,2024-05-20,3104.32,7,Loyal
+CUST-2291,John Smith,john.smith290@example.com,24,Canada,Vancouver,2024-09-26,1142.34,16,Standard
+CUST-2292,Daniel Walker,daniel.walker291@example.com,19,United Kingdom,London,2022-10-05,3157.84,16,VIP
+CUST-2293,John Smith,john.smith292@example.com,22,United Kingdom,Leeds,2023-02-22,7043.56,24,Loyal
+CUST-2294,Michael Hall,michael.hall293@example.com,23,Germany,Hamburg,2023-08-31,5058.25,28,Standard
+CUST-2295,Sarah Martin,sarah.martin294@example.com,72,Canada,Calgary,2024-07-21,10784.45,44,VIP
+CUST-2296,Emma Martin,emma.martin295@example.com,63,United Kingdom,Manchester,2023-05-06,2002.3,6,Standard
+CUST-2297,David Taylor,david.taylor296@example.com,41,Canada,Vancouver,2023-11-04,4794.12,12,New
+CUST-2298,Mary Anderson,mary.anderson297@example.com,48,Canada,Toronto,2025-03-10,11102.8,46,Loyal
+CUST-2299,Olivia Lee,olivia.lee298@example.com,46,Canada,Calgary,2022-12-09,5862.84,16,Loyal
+CUST-2300,Mary Clark,mary.clark299@example.com,40,Germany,Hamburg,2023-02-02,5378.31,18,Loyal

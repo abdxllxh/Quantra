@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Intelligence Designed To Evolve</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- OnlineWebFonts: BubbledotICG-FinePos -->
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
+
+  <!-- Font Awesome 6.5.2 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Full-viewport background video -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+
+  <div class="page">
+    <!-- 1. Header (Desktop & Mobile) -->
+    <header class="header">
+      <!-- Logo button -->
+      <a href="index.html" class="logo-btn" aria-label="Home">
+        <img src="assets/logo.webp" alt="" width="52" height="52" class="logo-img" />
+      </a>
+
+      <!-- Desktop Nav Pill (White) -->
+      <nav class="nav-pill" aria-label="Main navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#product" class="nav-link">Product</a>
+        <a href="#case-studies" class="nav-link">Case Studies</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Sign In Button -->
+      <a href="/workspace" class="sign-in-btn">Sign in</a>
+
+      <!-- Mobile Hamburger Button (<=720px) -->
+      <button class="burger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+    </header>
+
+    <!-- Mobile Navigation Overlay & Sheet (<=720px) -->
+    <div class="mobile-overlay" hidden></div>
+    <div class="mobile-menu" hidden aria-label="Mobile Navigation">
+      <nav class="mobile-nav-links">
+        <a href="#home" class="mobile-nav-link active" style="--i: 0">Home</a>
+        <a href="#product" class="mobile-nav-link" style="--i: 1">Product</a>
+        <a href="#case-studies" class="mobile-nav-link" style="--i: 2">Case Studies</a>
+        <a href="#contact" class="mobile-nav-link" style="--i: 3">Contact</a>
+        <a href="/workspace" class="mobile-sign-in-btn" style="--i: 4">Sign in</a>
+      </nav>
+    </div>
+
+    <!-- 2. Hero (Center) -->
+    <main class="hero">
+      <!-- Trust row: 3 overlapping avatar rings + trust pill -->
+      <div class="trust-row anim" style="--d: 0.05s">
+        <div class="avatar-ring avatar-1" title="Microsoft">
+          <div class="avatar-inner">
+            <i class="fa-brands fa-microsoft"></i>
+          </div>
+        </div>
+        <div class="avatar-ring avatar-2" title="Amazon">
+          <div class="avatar-inner">
+            <i class="fa-brands fa-amazon"></i>
+          </div>
+        </div>
+        <div class="avatar-ring avatar-3" title="Google">
+          <div class="avatar-inner">
+            <i class="fa-brands fa-google"></i>
+          </div>
+        </div>
+        <div class="trust-pill">
+          <span>Trusted by 2000+ Enterprises</span>
+        </div>
+      </div>
+
+      <!-- Headline: Exact Two Lines in Retro Dot-Matrix Display Font -->
+      <h1 class="headline">
+        <span class="line-1">Intelligence</span>
+        <span class="line-2">Designed To Evolve</span>
+      </h1>
+
+      <!-- Subhead (Exact copy) -->
+      <p class="subhead anim" style="--d: 0.28s">
+        Build applications that reason, adapt and collaborate using a modular
+        AI platform designed for production.
+      </p>
+
+      <!-- CTA Button -->
+      <div class="cta-wrap anim" style="--d: 0.4s">
+        <a href="/workspace" class="cta-btn">Get Started</a>
+      </div>
+    </main>
+
+    <!-- 3. Stats Footer (Exact 4 metrics with count-up animation) -->
+    <footer class="stats-footer">
+      <div class="stat-card anim" style="--d: 0.5s" data-target="120" data-suffix="ms" data-decimals="0">
+        <div class="stat-icon">&lt;</div>
+        <div class="stat-content">
+          <div class="stat-value">0ms</div>
+          <div class="stat-label">Inference Time</div>
+        </div>
+      </div>
+
+      <div class="stat-card anim" style="--d: 0.58s" data-target="99.99" data-suffix="%" data-decimals="2">
+        <div class="stat-icon">%</div>
+        <div class="stat-content">
+          <div class="stat-value">0.00%</div>
+          <div class="stat-label">Platform Uptime</div>
+        </div>
+      </div>
+
+      <div class="stat-card anim" style="--d: 0.66s" data-target="24" data-suffix="/7" data-decimals="0">
+        <div class="stat-icon">*</div>
+        <div class="stat-content">
+          <div class="stat-value">0/7</div>
+          <div class="stat-label">Autonomous Runtime</div>
+        </div>
+      </div>
+
+      <div class="stat-card anim" style="--d: 0.74s" data-target="2.4" data-suffix="M" data-decimals="1">
+        <div class="stat-icon">#</div>
+        <div class="stat-content">
+          <div class="stat-value">0.0M</div>
+          <div class="stat-label">Context Windows</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+Customer_ID,Full_Name,Email,Phone,Age,Country,City,Signup_Date,Lifetime_Value,Active
+CUST-2000,Emma Brown,emma.brown0@example.com,+92946251780,,US,Brisbane,31/02/2026,"12.500,50",No
+CUST-2001,Fatima Lee,fatima.lee1@example.com,+1521536864,38,Pakistan,Karachi,2024-05-29,17252.02,N
+CUST-2002,Muhammad Lee,muhammad.lee2@example.com,+61584782054,25.5,Australia,NYC,2023-12-29,3465.34,No
+CUST 2003,Sophia Smith,sophia.smith3@example.com,+1328167937,,Pakistan,,29/08/2021,23502.89,No
+CUST-2004,James Ahmed,james.ahmed4@example.com,+1382217990,66,United States,unknown,20 Jun 2021,1O000,Yes
+CUST-2005,???,john.brown5@example.com,+44427250760,57,Canada,Vancouver,2024/02/01,18439.16,No
+CUST-2006,John Clark,john.clark6@example.com,+92654110335,25.5,United Kingdom,London,not a date,24102.32,Yes
+CUST-2007,Aisha Martin,@domain.com,0061577233482,28,United States,Chicago,Feb 30 2025,8978.35,
+CUST-2008,Ali Martin,ali.martin8@example.com,,0,United States,Seattle,2022/06/04,20546.1,No
+,Daniel Clark,daniel.clark9@example.com,+1939293145,61,Canada,Melb,2023/09/17,7766.21,Yes
+CUST-2010,Fatima Smith,,+92944556973,52,Can.,Karachi,19/11/2023,24826.55,No
+cust-2011,Sarah Brown,sarah.brown11@example.com,+61524076720,55,United Kingdom,NYC,08/10/2025,3622.08,Yes
+CUST-2012,Fatima Johnson,,+92702118477,,Australia,Sydney,2020/10/21,19838.67,FALSE
+CUST-2013,Emma Smith,user @mail.com,(02) 9999-8888,42,United States,Karachi?,26/09/2025,20933.62,Yes
+CUST-2014,Sarah Brown,sarah.brown14@example.com,,30,AUS,Calgary,2021-05-22,5739.75,Yes
+CUST-2015,Ali Clark,ALI.CLARK15@EXAMPLE.COM,123,32,Australia,Brisbane,22/03/2023,20961.9,No
+CUST-2016,Sophia Brown,sophia.brown16@example.com,+44902283603,52,United States,Seattle,Feb 30 2025,3920.21,Yes
+CUST-2017,Aisha Brown,aisha.brown17@example.com,+61733543464,64,UK,Calgary,10 Aug 2023,15080.44,N
+,Daniel Taylor,daniel.taylor18@example.com,+92-300-ABC-123,66,Pakistan,Karachi,31/02/2026,3506.96,Yes
+CUST-2019,Aisha Ahmed,,0300 1234567,20,Canada,Toronto,13/13/26,20896.16,Yes
+CUST 2020,Sarah Lee,sarah.lee20@example.com,abc123,,Canada,Vancouver,00/00/0000,2372.71,Yes
+CUST-2021,Ali Wilson,ali.wilson21@example.com,+92898974759,64,,London,2021/11/15,7165.34,No
+cust-2022,Ali Lee,ali.lee22@example.com,,61,UK,New York,2025-11-05,free,Yes
+CUST-2023,,sarah.taylor23@example.com,+44571604774,66,United Kingdom,Leeds,2025-04-13,1272.98,Yes
+CUST-2024,Aisha Johnson,abc.com,+61457576039,67,Pakistan,Lahore,2025/00/12,8011.4,no 
+CUST-2025,Aisha Martin,aisha.martin25@example.com,+61836659620,51,australia,Toronto,24/06/2025,13632.13,No
+CUST-2026,  John Khan  ,john.khan26@example.com,+44867784635,42,AUS,unknown,13 Apr 2021,13307.96,Yes
+CUST-2027,James Lee,james.lee27@example.com,+92-300-ABC-123,32,United Kingdom,Leeds,28 Mar 2021,12658.03,No
+CUST-2028,Muhammad Wilson,muhammad.wilson28@@example.com,+61598420115,23,United States,New York,20 May 2021,16623.01,No
+CUST-2029,James Martin,james.martin29@example.com,+61491721060,61,Canada,Vancouver,2025/03/29,9516.24,Yes
+CUST-2030,Sarah Smith,sarah.smith30@example.com,+1309943379,,United Kingdom,,02 May 2024,16429.11,No
+CUST-2031,James Ahmed,james.ahmed31@example.com,+61697292488,68,Australia,Sydney,15/01/2025,7477.92,Yes
+CUST-2032,Muhammad Wilson,muhammad.wilson32@example.com,+61486714343,51,Pakistan,Karachi,00/00/0000,10810.65,yes 
+CUST-2033,Sophia Khan,sophia.khan33@example.com,+61373836146,73,U.S.A,Manchester,31 Oct 2021,12959.25,No
+CUST-2034,12345,ali.khan34@example.com,+61508584223,67,United Kingdom,Leeds,2024-11-05,16122.91,No
+CUST-2035,Daniel Khan,daniel.khan35@@example.com,+92959844574,62,Pakistan,Islamabad,08 Nov 2024,24128.71,No
+CUST-2036,Sarah Taylor,sarah.taylor36@example.com,0061526982826,24,Pakistan,Melb,15/04/2024,10122.16,Yes
+CUST-2037,Sophia Martin,sophia.martin37@example.com,+1914887339,999,Canada,Vancouver,2025/01/29,15738.28,Yes
+CUST-2038,???,sarah.wilson38@example.com,abc123,45,United Kingdom,Karachi?,17/10/2020,8938.7,No
+CUST-2039,Sarah Lee,sarah.lee39@example.com,,27,Australia,Brisbane,15 Aug 2021,"12.500,50",Yes
+CUST-2040,Fatima Lee,fatima.lee40@example.com,+44440832129,44,Australia,Sydney,18/03/2020,20430.38,No
+CUST-2042,Ali Lee,abc.com,+44483116621,73,Australia,Melbourne,14/06/2022,"12.500,50",No
+CUST-2043,John Clark,john.clark43@example.com,+92922664476,78,PK,Seattle,2021/08/02,24207.8,FALSE
+CUST-2044,Sophia Lee,sophia.lee44@example.com,+1668783199,26,Australia,Brisbane,26/02/2025,14991.75,Yes
+CUST-2045,Fatima Lee,fatima.lee45@example.com,+44497529335,29,United States,Seattle,20/02/2023,23668.44,Yes
+,  John Lee  ,john.lee46@example.com,001415833175,24,Australia,Brisbane,2022-03-22,15905.22,No
+CUST-2047,Fatima Khan,fatima.khan47@example.com,,999,U.K.,Vancouver,2020/01/17,2574.23,Yes
+CUST-2048,Muhammad Ahmed,muhammad.ahmed48@example.com,+1696842679,twenty,Canada,Calgary,2026/01/07,3871.95,Yes
+CUST-2049,Ali Martin,@domain.com,+1530150967,61,,Toronto,21/02/2022,,No
+CUST-2050,James Smith,james.smith50@example.com,+61319847030,46,Pakistan,Karachi,2023-06-10,20102.22,Yes
+CUST-2051,Ali Brown,@domain.com,+44450847662,41,Canada,Toronto,22 Jan 2023,10281.29,Yes
+CUST-2052,Ali Brown,ali.brown52@example.com,+44762103846,77,United States,Seattle,23/02/2023,"12.500,50",Yes
+CUST-2053,James Smith,james.smith53@example.com,+44854618689,57,United Kingdom,,10-09-2024,free,No
+CUST-2054,12345,fatima.lee54@example.com,abc123,57,Canada,Vancouver,28 Jan 2023,free,No
+CUST-2055,Muhammad Khan,name@,+1660937059,-4,Pakistan,Karachi,2024/10/04,1O000,Yes
+CUST-2056,12345,emma.martin56@example.com,+92345537270,22,U.K.,London,2024/10/17,20176.88,No
+CUST-2057,Daniel Martin,daniel.martin57@example.com,+1540033423,67,UK,Islamabad,2024-07-04,21016.31,N
+CUST 2058,James Smith,james.smith58@example.com,+61539250313,twenty,United States,Chicago,2024-04-26,14223.73,Yes
+CUST-2059,john martin,abc.com,+92689036516,62,Canada,Calgary,2022/02/16,287.56,No
+CUST-2060,Daniel Wilson,daniel.wilson60@example.com,+61683364400,28,United States,New York,03/05/2022,7467.35,No
+CUST 2061,Sarah Taylor,sarah.taylor61@example.com,+1866602360,24,United States,New York,05-08-2023,9563.14,No
+CUST-2062,Ali Taylor,ali.taylor62@example.com,+44309404328,63,United Kingdom,London,05-25-2021,17684.48,No
+CUST-2063,Muhammad Brown,muhammad.brown63@example.com,123,-4,PK,Seattle,03-19-2024,3376.8,No
+CUST-2064,Muhammad Smith,muhammad.smith64@example.com,+44444644383,69,Australia,Melbourne,05-29-2020,2188.46,No
+CUST-2065,Sophia Ahmed,sophia.ahmed65@example.com,+61815994145,77,United States,Chicago,30 Mar 2024,6220.99,TRUE
+CUST-2066,Daniel Lee,daniel.lee66@example.com,+92465397787,25.5,Australia,Melbourne,17/09/2022,8969.35,Yes
+CUST-2067,Ali Smith,ali.smith67@example.com,+61754647792,,Australia,Sydney,2021/05/01,,Yes
+CUST-2068,James Brown,james.brown68@example.com,+61440423185,52,Australia,Melbourne,31/02/2026,17897.1,No
+CUST-2069,Aisha Brown,aisha.brown69@example.com,+92998833352,34,Australia,Karachi?,02-24-2021,8182.24,Yes
+CUST-2070,Sophia Johnson,sophia.johnson70@example.com,+61964336612,40,Canada,Toronto,2026-03-14,12562.27,yes 
+CUST 2071,  Ali Smith  ,ali.smith71@example.com,+44626278877,71,Australia,Brisbane,25/05/2023,,Yes
+CUST-2072,Sarah Smith,sarah.smith72@example.com,+61524981533,48,PK,Calgary,03/05/2022,22228.58,No
+CUST-2073,James Wilson,james.wilson73@example.com,+92790833365,999,United Kingdom,Leeds,08/01/2024,free,No
+CUST-2074,John Martin,john.martin74@example.com,+92536028690,75,,Toronto,31/02/2026,5172.81,
+CUST-2075,Sophia Wilson,sophia.wilson75@example.com,+1674897741,31,US,Karachi,03-25-2026,14377.18,Yes
+CUST-2076,Muhammad Martin,@domain.com,+92834612321,twenty,Pakistan,Karachi,11/03/2023,21936.72,No
+CUST-2077,Fatima Clark,fatima.clark77@example.com,+92588003917,24,U.S.A,Leeds,99-99-9999,,Yes
+CUST-2078,John Wilson,@domain.com,+44497289202,77,United States,,05 Jun 2025,9102.82,Yes
+CUST-2079,Fatima Taylor,fatima.taylor79@example.com,+61870321180,-4,United States,Seattle,25 Nov 2022,1O000,Yes
+CUST-2080,Ali Lee,ali.lee80@example.com,+92403637051,25.5,USA,unknown,12 Mar 2021,8408.93,No
+CUST-2081,12345,fatima.ahmed81@@example.com,+44523656980,53,Canada,Toronto,2022/10/17,18251.46,maybe
+CUST-2082,Muhammad Ahmed,muhammad.ahmed82@example.com,+61630147111,47,USA,Sydney,04/06/2022,18180.91,Yes
+CUST-2083,  Fatima Smith  ,fatima.smith83@example.com,123,26,United Kingdom,London,2024-07-12,2324.84,Yes
+CUST-2084,Sophia Lee,sophia.lee84@example.com,+92328106681,72,United Kingdom,Leeds,06 Apr 2020,7812.32,No
+CUST-2085,John Martin,name@,+44935378500,27,United States,Seattle,11 Dec 2024,21998.48,No
+CUST-2086,Sophia Taylor,,+1531214524,73,Canada,Calgary,09/07/2023,999999999,Y
+CUST-2087,Sophia Taylor,sophia.taylor87@example.com,+44759450089,70,United States,Chicago,2020-08-16,15542.13,No
+CUST-2088,Fatima Johnson,sophia.taylor87@example.com,+61461565484,,Pakistan,Lahore,not a date,10975.24,No
+,Ali Martin,ali.martin89@example.com,(02) 9999-8888,twenty,Australia,Melbourne,2021-01-31,,Yes
+CUST-2090,Daniel Martin,,123,145,United States,Seattle,31/02/2026,16346.37,No
+CUST-2091,12345,sophia.khan91@example.com,+1343562739,20,United States,unknown,03 Jun 2022,,Yes
+CUST-2092,DanielBrown,daniel.brown92@example.com,+61515726609,21,Pakistan,Karachi?,01 Sep 2022,13993.66,No
+CUST-2093,  Sophia Ahmed  ,sophia.ahmed93@example.com,+1984591063,27,United States,Chicago,19/10/2025,2974.04,Yes
+CUST-2094,Sophia Wilson,SOPHIA.WILSON94@EXAMPLE.COM,abc123,24,Australia,Melbourne,14/09/2021,23829.31,Yes
+CUST-2095,Muhammad Brown,muhammad.brown95@example.com,+92451255916,-4,Pakistan,Karachi?,11 Apr 2020,21705.08,Yes
+,Daniel Khan,daniel.khan96@example.com,+1950945379,70,U.K.,Islamabad,31/02/2026,18371.22,Yes
+CUST-2097,Sarah Taylor,sarah.taylor97@example.com,+1505250507,999,Australia,Brisbane,10 Aug 2021,8199.39,No
+CUST-2098,Daniel Wilson,,+44449568952,64,Canada,Calgary,2020-02-25,-400,No
+CUST-2099,Muhammad Ahmed,muhammad.ahmed99@example.com,+44437825557,45,Canada,Vancouver,2021-01-10,5940.75,Yes
+CUST-2100,James Johnson,abc.com,+1969324139,0,Canada,Calgary,10-18-2020,21422.92,No
+CUST-2101,???,james.clark101@example.com,+92327312762,30,pakistan,unknown,16 Mar 2023,5475.08,No
+CUST-2102,12345,james.johnson102@example.com,+92750912169,twenty,United Kingdom,London,03 Sep 2023,11237.7,Yes
+CUST-2103,Daniel Lee,daniel.lee103@example.com,+61571670238,78,United Kingdom,Manchester,03-11-2026,free,Yes
+CUST-2104,Fatima Johnson,fatima.johnson104@example.com,+1960733627,41,United Kingdom,Manchester,2020/12/05,174.73,Yes
+CUST-2105,Fatima Johnson,fatima.johnson105@example.com,+92375665713,78,Canada,Vancouver,99-99-9999,24737.58,Yes
+CUST-2106,Ali Smith,ali.smith106@example.com,+44878948799,51,United Kingdom,London,04-25-2024,16546.08,Yes
+,John Brown,,+1488972533,36,Australia,Melbourne,Feb 30 2025,2243.62,No
+CUST-2108,Daniel Johnson,daniel.johnson108@example.com,abc123,71,Australia,Brisbane,2026-13-44,15292.32,Yes
+,Aisha Clark,aisha.clark109@@example.com,+1423683330,22,Pakistan,Islamabad,2020-03-29,20482.27,Yes
+CUST-2110,John Khan,john.khan110@example.com,+1578325772,59,United Kingdom,Manchester,not a date,19076.57,Yes
+CUST-2112,Daniel Clark,daniel.clark112@example.com,+61844441043,48,United Kingdom,Melb,02-28-2021,"12.500,50",Yes
+CUST-2113,Ali Taylor,ali.taylor113@example.com,+44411556620,63,Pakistan,Lahore,12-14-2025,18139.09,No
+CUST-2114,Fatima Ahmed,fatima.ahmed114@example.com,+1550014079,42,United Kingdom,Manchester,2023-04-22,10567.92,No
+CUST-2115,Sarah Johnson,user @mail.com,+61828576694,50,Pakistan,Islamabad,2020/02/01,346.36,Yes
+CUST-2116,Aisha Martin,aisha.martin116@@example.com,+92554694323,145,Canada,Vancouver,02-18-2024,"12.500,50",No
+CUST-2117,Emma Brown,emma.brown117@example.com,+92350913533,32,Pakistan,Karachi?,11-01-2023,"12.500,50",N
+CUST-2118,Sophia Lee,name@,+1552612459,43,Pakistan,Karachi,03/03/2020,7768.39,No
+CUST-2119,SARAH BROWN,sarah.brown119@example.com,(02) 9999-8888,25,U.K.,Leeds,2023/09/11,21093.86,No
+CUST-2120,Muhammad Lee,muhammad.lee120@example.com,+44785374713,75,Australia,Sydney,02-17-2025,6245.58,Yes
+CUST-2121,Muhammad Lee,muhammad.lee121@example.com,+92485418436,31,PK,Melbourne,31/02/2026,9167.38,Yes
+CUST-2122,Muhammad Smith,muhammad.smith122@example.com,0061846109950,22,US,Melb,01-20-2021,18333.74,Yes
+CUST-2123,Ali Martin,ali.martin123@example.com,+92-300-ABC-123,39,United States,Seattle,09/04/2026,18771.12,No
+CUST-2124,Daniel Clark,daniel.clark124@example.com,+61448872761,48,United Kingdom,Manchester,2024-11-26,367.2,Yes
+,Muhammad Lee,muhammad.lee125@example.com,+1427612975,52,Pakistan,Lahore,2025-01-25,,No
+CUST-2126,Aisha Lee,aisha.lee126@example.com,+1512424258,43,,Lahore,05-15-2021,192.99,yes 
+CUST-2127,Ali Smith,ali.smith127@example.com,+92643893387,999,AUS,Sydney,2023/09/13,13423.75,No
+CUST-2128,12345,daniel.lee128@example.com,+1776697168,31,Australia,Brisbane,2022-01-21,11256.1,
+,Sophia Brown,sophia.brown129@example.com,+1742129007,31,U.S.A,London,13 May 2020,11538.0,No
+CUST-2130,Emma Ahmed,emma.ahmed130@example.com,+61779538006,36,Canada,Vancouver,2024/04/07,5912.79,TRUE
+cust-2131,Sarah Clark,sarah.clark131@example.com,001842461666,62,Pakistan,Lahore,08 Jul 2025,20869.61,Yes
+CUST-2132,Sophia Wilson,@domain.com,+61686637377,71,United Kingdom,Manchester,2020/12/03,-400,No
+,  Daniel Smith  ,daniel.smith133@example.com,+1755779167,78,United States,Seattle,10-14-2023,7606.61,Yes
+CUST-2134,Aisha Johnson,aisha.johnson134@example.com,+44534646197,76,Canada,Calgary,12-16-2020,-400,No
+CUST-2135,Ali Smith,not-an-email,+1624441003,58,Australia,,20 Feb 2022,24597.92,Yes
+CUST-2136,???,fatima.smith136@example.com,+1950954243,64,Pakistan,Islamabad,30/05/2024,7111.81,No
+CUST 2137,Sophia Wilson,name@,+1984329360,74,Pakistan,Islamabad,2020-04-10,16287.06,no 
+CUST-2138,Sarah Ahmed,sarah.ahmed138@example.com,+1702185878,41,PK,Vancouver,08/04/2026,23361.1,FALSE
+CUST-2139,,,+92934822905,24,PK,Brisbane,03-25-2022,23344.05,No
+CUST-2140,12345,fatima.martin140@example.com,+61909157875,75,United Kingdom,Leeds,28/01/2022,17112.38,Yes
+CUST-2141,  Emma Wilson  ,emma.wilson141@example.com,+92832652828,40,PK,Lahore,05-15-2020,13383.0,Yes
+CUST-2142,Muhammad Ahmed,muhammad.ahmed142@example.com,+44691926642,57,Canada,Toronto,18/11/2022,9492.6,Yes
+CUST-2143,Emma Wilson,not-an-email,+92505557103,31,Canada,Toronto,2026-13-44,7794.68,No
+CUST-2144,Muhammad Wilson,muhammad.wilson144@example.com,+61500170417,25,Australia,Melbourne,21/01/2020,14073.57,No
+CUST-2145,Muhammad Clark,muhammad.clark145@example.com,+92-300-ABC-123,25.5,Pakistan,Islamabad,2020/08/14,19208.78,No
+CUST-2146,12345,sarah.smith146@example.com,+61671887710,68,Canada,,24 Mar 2021,313.49,No
+CUST-2147,Fatima Wilson,fatima.wilson147@example.com,+92729523581,19,Canada,Toronto,07-15-2020,4420.84,No
+,Muhammad Smith,muhammad.smith148@example.com,(02) 9999-8888,,PAKISTAN ,unknown,2025/00/12,24159.91,maybe
+CUST-2149,  Aisha Johnson  ,aisha.johnson149@example.com,+61499372227,67,United Kingdom,Manchester,31/02/2026,10122.64,No
+CUST-2150,Daniel Wilson,not-an-email,abc123,39,Australia,,99-99-9999,3666.04,Y
+CUST-2151,Daniel Brown,daniel.brown151@example.com,0300 1234567,76,Australia,Melbourne,2025/03/31,20366.92,Yes
+CUST-2152,Sarah Ahmed,sarah.ahmed152@example.com,(02) 9999-8888,36,Canada,NYC,01 Nov 2025,7956.9,Yes
+CUST-2153,Ali Ahmed,,,42,United States,Seattle,03/10/2023,3805.23,No
+CUST-2154,Fatima Smith,name@,,37,Australia,Brisbane,2020/06/27,15540.66,Yes
+CUST-2155,Sarah Taylor,@domain.com,+1474917048,77,pakistan,Lahore,2022-06-03,9366.41,No
+CUST-2156,Daniel Ahmed,user @mail.com,+44585823140,twenty,Australia,Brisbane,2025-07-18,13647.9,1
+CUST-2157,James Taylor,james.taylor157@example.com,+92753381488,76,Pakistan,Lahore,23 Jan 2026,free,Yes
+CUST-2158,John Smith,john.smith158@example.com,+44552843457,999,Australia,Sydney,27/12/2025,-400,maybe
+CUST-2159,James Martin,,+44844509072,61,Australia,Sydney,11-10-2024,9676.84,Yes
+CUST-2160,12345,sarah.wilson160@example.com,+1462376603,-4,United Kingdom,London,27 Aug 2021,6301.16,maybe
+CUST-2161,Daniel Taylor,name@,,62,U.K.,Brisbane,04-10-2022,4982.23,no 
+CUST-2162,Sarah Brown,sarah.brown162@example.com,abc123,45,Pakistan,Karachi,17/04/2024,20234.26,Yes
+CUST-2163,Muhammad Clark,muhammad.clark163@@example.com,+61492270690,72,pakistan,Sydney  ,2020-02-06,23946.57,yes 
+CUST-2164,Sophia Taylor,SOPHIA.TAYLOR164@EXAMPLE.COM,+92321739883,34,Canada,Calgary,18 Apr 2020,14898.97,No
+CUST-2165,Fatima Khan,fatima.khan165@example.com,+1531671964,44,Pakistan,Karachi,2025/12/12,137.01,Yes
+CUST-2166,Fatima Lee,fatima.lee166@example.com,+1763435064,73,PAKISTAN ,Calgary,13 Sep 2022,7778.4,0
+CUST-2167,Sarah Johnson,sarah.johnson167@example.com,+44987216353,28,United Kingdom,London,15 Sep 2021,3200.32,Yes
+CUST-2168,Aisha Martin,aisha.martin168@example.com,+61820129613,61,Pakistan,Karachi,2022/08/03,1102.35,Yes
+CUST-2169,Sophia Taylor,sophia.taylor169@@example.com,+61963629754,45,United States,New York,01-05-2025,3264.96,Yes
+CUST-2170,Fatima Ahmed,fatima.ahmed170@example.com,+1708987309,52,Can.,unknown,2020-03-26,10792.97,Yes
+CUST-2171,James Wilson,james.wilson171@example.com,+61428116422,41,United Kingdom,Leeds,25 Dec 2023,16572.11,Yes
+CUST-2172,Sophia Johnson,sophia.johnson172@example.com,+92948431528,41,United States,Seattle,13/13/26,16902.57,Yes
+CUST-2173,Emma Ahmed,emma.ahmed173@example.com,abc123,48,Australia,Melbourne,13 Aug 2025,14099.07,No
+CUST-2174,  Sarah Ahmed  ,sarah.ahmed174@example.com,+1566666801,61,Canada,Calgary,2025/08/04,19557.1,No
+CUST-2175,  John Taylor  ,john.taylor175@example.com,(02) 9999-8888,77,United States,Seattle,31/02/2026,4911.72,Yes
+CUST-2176,Emma Brown,emma.brown176@example.com,+44477788908,145,United Kingdom,London,2026-04-06,3439.27,Yes
+CUST-2177,John Johnson,john.johnson177@example.com,+1915956709,-4,Pakistan,Karachi,2020/04/02,22438.96,No
+CUST-2178,John Ahmed,john.ahmed178@example.com,+1757886764,77,Pakistan,Islamabad,09 Apr 2023,"12.500,50",No
+,Aisha Martin,aisha.martin179@@example.com,+1412536983,53,Australia,Sydney,2022/02/06,22156.29,Yes
+CUST-2180,Ali Khan,name@,+44816490542,21,Canada,Calgary,10 Jul 2021,"$12,500.50",No
+CUST-2181,Daniel Brown,not-an-email,+92985808227,57,Pakistan,Islamabad,2024-10-20,,Yes
+CUST-2182,John Khan,john.khan182@example.com,+92617373704,34,Canada,Toronto,13/13/26,15577.18,Yes
+CUST-2183,AliClark,ali.clark183@example.com,+44315873434,37,Australia,Sydney,2025/10/29,22300.25,Yes
+CUST-2184,Emma Brown,,+1742496855,41,United Kingdom,Karachi?,27/02/2020,,Y
+CUST-2185,Sophia Ahmed,sophia.ahmed185@example.com,+92-300-ABC-123,,United Kingdom,Manchester,2023-08-27,9586.19,No
+CUST-2186,Emma Martin,emma.martin186@example.com,+1716744386,145,Pakistan,Lahore,05-29-2022,19081.27,Yes
+CUST-2187,Ali Smith,ali.smith187@example.com,+1821698513,66,US,Calgary,99-99-9999,"$12,500.50",No
+CUST-2189,Sophia Brown,sophia.brown189@example.com,+44970985038,69,Canada,Calgary,2022/09/20,10506.12,TRUE
+CUST-2190,Aisha Smith,abc.com,+1751010998,19,Canada,Toronto,29/08/2024,1016.7,No
+CUST-2191,Sophia Khan,sophia.khan191@example.com,+44966090326,73,PAKISTAN ,Manchester,2024-02-15,19125.7,Yes
+CUST-2192,Sarah Ahmed,sarah.ahmed192@@example.com,abc123,76,AUS,Melbourne,08 Jan 2021,-400,No
+CUST-2193,12345,john.taylor193@example.com,+1874788600,67,Australia,Melbourne,Feb 30 2025,10567.55,Yes
+cust-2194,12345,james.wilson194@example.com,+61325496286,20,UK,Karachi,19 Dec 2023,15175.96,Yes
+,Fatima Khan,fatima.khan195@example.com,+92566816899,52,Australia,Brisbane,13/13/26,13693.91,Yes
+CUST-2196,Sarah Wilson,sarah.wilson196@example.com,+61599774886,145,Australia,Sydney,10/02/2020,,No
+CUST-2197,James Taylor,james.taylor197@example.com,+61467452087,52,Canada,Vancouver,12-04-2021,3839.79,Yes
+CUST-2198,Sarah Lee,sarah.lee198@example.com,+1809106834,55,United States,Seattle,03 Jan 2024,19274.56,TRUE
+CUST-2199,Ali Wilson,sarah.lee198@example.com,+92646280722,69,Australia,Melbourne,2025-10-21,3441.36,Yes
+CUST-2200,James Khan,james.khan200@example.com,+61625664389,25.5,Canada,Vancouver,04-02-2023,1O000,No
+CUST-2201,John Clark,john.clark201@example.com,+44321366412,39,United States,Seattle,13 Feb 2024,3544.24,No
+CUST-2202,Muhammad Martin,muhammad.martin202@example.com,+92823453057,74,Pakistan,Lahore,2026-13-44,22671.73,No
+CUST-2203,Emma Brown,@domain.com,+92389363131,71,PK,Melb,2024-10-24,999999999,No
+CUST 2204,Sarah Wilson,abc.com,+44863273500,-4,pakistan,Islamabad,01/08/2022,18210.6,Yes
+CUST-2205,James Khan,,+1639313451,999,Canada,Calgary,10 Oct 2025,19065.56,Yes
+CUST-2206,Sophia Taylor,sophia.taylor206@@example.com,+44993007635,0,Pakistan,Karachi,25/03/2022,10640.73,No
+CUST-2207,Daniel Lee,daniel.lee207@example.com,+1964743963,37,Australia,Melbourne,15/04/2021,419.17,Y
+CUST-2208,Daniel Khan,daniel.khan208@example.com,+61859997913,999,United Kingdom,LONDON,15 Apr 2026,999999999,0
+CUST-2209,James Clark,james.clark209@example.com,+1959579808,71,United States,New York,07-10-2025,8869.43,Yes
+CUST-2210,John Khan,john.khan210@example.com,+44680205803,,,Sydney,2021-05-25,2759.96,Yes
+CUST-2211,Muhammad Lee,muhammad.lee211@example.com,+1743808682,78,Canada,Toronto,31/02/2026,9942.21,Yes
+CUST-2212,Daniel Ahmed,daniel.ahmed212@example.com,+92339465664,63,U.K.,Calgary,02 Sep 2024,1177.24,No
+CUST-2213,Sophia Martin,sophia.martin213@example.com,+61480464830,73,UK,Karachi?,2025-10-11,7136.35,No
+CUST-2214,Ali Johnson,ali.johnson214@example.com,+92434078399,64,United Kingdom,Leeds,06-05-2020,17013.94,No
+CUST-2215,???,james.lee215@example.com,+92728821032,,Canada,Vancouver,2022-09-21,19914.54,Yes
+CUST-2216,Sarah Brown,sarah.brown216@example.com,,60,U.S.A,London,08/09/2020,15390.03,N
+CUST-2217,Muhammad Clark,muhammad.clark217@example.com,abc123,0,Australia,Melbourne,2020-01-09,16682.44,maybe
+CUST-2218,Muhammad Wilson,muhammad.wilson218@example.com,+92-300-ABC-123,999,United Kingdom,London,12-16-2023,"$12,500.50",Yes
+CUST-2219,Ali Brown,not-an-email,+92334531920,35,UK,Brisbane,15/12/2024,2930.13,No
+CUST-2220,James Lee,james.lee220@example.com,+44887634578,66,Pakistan,Karachi,09-18-2024,-400,No
+CUST-2221,,name@,(02) 9999-8888,57,United States,Chicago,Feb 30 2025,12678.13,No
+CUST-2222,Fatima Khan,fatima.khan222@example.com,+92662199342,32,United States,Chicago,05 Jul 2024,15861.8,No
+CUST-2223,Daniel Johnson,name@,+92563633072,68,United Kingdom,Karachi?,2020-03-12,-400,Yes
+cust-2224,Emma Khan,emma.khan224@example.com,+92-300-ABC-123,42,United States,New York,07-08-2021,13187.85,No
+CUST-2225,Emma Johnson,EMMA.JOHNSON225@EXAMPLE.COM,+44501319328,20,United Kingdom,Leeds,2022/02/04,11203.08,No
+CUST-2226,  James Taylor  ,user @mail.com,+1309627925,20,United Kingdom,Leeds,2025-07-11,6342.23,N
+CUST-2227,Daniel Johnson,daniel.johnson227@example.com,+61471688378,60,PAKISTAN ,Manchester,06 Feb 2026,17732.1,Yes
+CUST 2228,Daniel Martin,daniel.martin228@example.com,+92706866080,26,Canada,NYC,2020-08-25,20925.1,TRUE
+CUST-2229,Ali Wilson,ali.wilson229@example.com,+92759330208,41,Canada,Vancouver,15/03/2023,24522.85,No
+CUST-2230,Sophia Taylor,sophia.taylor230@example.com,+61981432753,37,United Kingdom,Leeds,16/07/2021,1O000,maybe
+CUST-2231,Emma Ahmed,EMMA.AHMED231@EXAMPLE.COM,+1995918191,56,Pakistan,Islamabad,07-21-2025,836.62,
+CUST-2232,Muhammad Taylor,name@,0092331710653,60,United Kingdom,Manchester,2026-13-44,18002.17,No
+CUST-2233,  James Ahmed  ,james.ahmed233@example.com,+1638764844,0,United Kingdom,Leeds,19 Jan 2025,12150.37,Yes
+CUST-2234,  James Lee  ,james.lee234@example.com,+92-300-ABC-123,67,UK,Leeds,19/08/2025,20638.04,No
+CUST-2235,Daniel Taylor,daniel.taylor235@example.com,+1765068470,40,USA,Chicago,17/09/2023,15188.11,No
+CUST-2236,Fatima Clark,fatima.clark236@example.com,,55,Australia,Sydney,2023-03-08,21730.52,yes 
+CUST-2237,,james.martin237@example.com,+44871954508,30,Australia,Melb,not a date,16560.18,
+CUST-2238,???,abc.com,+61656305353,,United Kingdom,Manchester,22 Nov 2023,,maybe
+CUST-2239,Sarah Ahmed,sarah.ahmed239@example.com,(02) 9999-8888,59,United Kingdom,Manchester,03 Dec 2021,4860.25,Yes
+CUST-2240,Daniel Ahmed,daniel.ahmed240@example.com,+61411468305,70,U.S.A,Karachi?,03/08/2020,8445.17,Yes
+CUST-2241,Ali Martin,ali.martin241@example.com,+1925485243,54,PAKISTAN ,Vancouver,2022/04/16,1392.47,No
+CUST-2242,Emma Wilson,not-an-email,+92743366821,40,United States,New York,not a date,6576.03,1
+cust-2243,Sarah Wilson,not-an-email,+44950504043,52,Can.,Toronto,01-19-2026,,Yes
+CUST-2244,Sarah Ahmed,sarah.ahmed244@example.com,+1698871898,54,Pakistan,Karachi,21/01/2023,"12.500,50",Yes
+CUST-2245,Aisha Smith,,+61545943768,28,United States,New York,2026-13-44,18701.3,No
+CUST-2246,Ali Smith,user @mail.com,+1493525266,55,AUS,New York,2025/05/13,5984.57,0
+cust-2247,Muhammad Johnson,muhammad.johnson247@example.com,+92318000259,21,PAKISTAN ,Seattle,12-12-2023,5809.54,No
+CUST-2248,Ali Ahmed,,abc123,24,United States,New York,17/06/2022,3026.28,No
+CUST-2249,Emma Johnson,emma.johnson249@example.com,abc123,66,United States,Chicago,2022/07/12,24910.98,No
+CUST-2250,Sophia Clark,sophia.clark250@example.com,+61392473369,38,United Kingdom,Manchester,11-21-2020,12223.45,Yes
+CUST-2251,Ali Ahmed,ali.ahmed251@example.com,+44448359715,35,UK,Toronto,12/03/2022,free,Yes
+CUST-2252,SarahWilson,sarah.wilson252@example.com,+44789703191,19,Australia,Brisbane,00/00/0000,22460.37,Yes
+,Ali Clark,ali.clark253@example.com,,46,Can.,Seattle,00/00/0000,12872.54,FALSE
+CUST-2254,Fatima Ahmed,fatima.ahmed254@example.com,+92524559214,31,United States,New York,2023-12-20,20831.16,Yes
+CUST-2256,,emma.johnson256@example.com,+1379582312,56,Pakistan,Lahore,2022/06/16,3171.28,FALSE
+CUST-2257,John Ahmed,name@,+61990663729,78,Canada,Toronto,07-29-2023,1976.0,FALSE
+CUST-2258,James Wilson,james.wilson258@example.com,+44800749132,66,PAKISTAN ,Vancouver,2026-13-44,1988.75,FALSE
+CUST-2259,Aisha Brown,aisha.brown259@example.com,(02) 9999-8888,19,United Kingdom,London,18 Nov 2022,13599.14,N
+CUST-2260,John Lee,john.lee260@example.com,+92571364655,40,United Kingdom,Leeds,06 Apr 2021,1O000,Yes
+CUST-2261,Daniel Taylor,daniel.taylor261@example.com,+44805877826,53,Australia,Melbourne,2025/09/18,,No
+CUST-2262,EmmaLee,emma.lee262@example.com,abc123,-4,Australia,Melbourne,2020-04-21,free,Yes
+CUST-2263,Fatima Wilson,fatima.wilson263@example.com,123,22,United Kingdom,London,30/12/2020,999999999,No
+CUST-2264,Muhammad Brown,muhammad.brown264@example.com,+1788834615,51,Canada,Vancouver,2022-11-10,5784.16,No
+CUST-2265,,emma.martin265@example.com,,21,Australia,Melbourne,2025-02-09,5721.33,Yes
+CUST-2266,12345,ali.johnson266@example.com,+44513215785,59,Australia,Melbourne,12-26-2025,20300.84,yes 
+CUST-2267,12345,aisha.clark267@example.com,+1890408712,29,United States,Seattle,99-99-9999,14377.41,FALSE
+CUST-2268,James Brown,abc.com,+61978890552,36,Australia,Melbourne,15 Feb 2024,21335.59,Yes
+CUST-2269,Sophia Johnson,sophia.johnson269@example.com,+92726087205,27,Canada,Toronto,14/10/2021,14120.51,No
+CUST-2270,Emma Lee,emma.lee270@example.com,+92372164864,73,Canada,Toronto,99-99-9999,,No
+CUST-2271,Emma Martin,emma.martin271@example.com,+92536058262,51,Canada,Toronto,2025/00/12,8745.18,No
+CUST-2272,Emma Smith,emma.smith272@example.com,+92455431990,51,Pakistan,Islamabad,01-28-2024,11946.53,No
+CUST-2273, Sarah Lee,name@,+92807591187,22,Australia,Sydney,2024-02-06,21266.22,TRUE
+CUST-2274,Ali Smith,ali.smith274@example.com,+1432471390,45,United Kingdom,Leeds,10 Jan 2022,4602.66,Yes
+CUST-2275,Emma Smith,not-an-email,+61800050622,65,Pakistan,  Islamabad  ,13 Dec 2022,20627.14,No
+,Daniel Ahmed,daniel.ahmed276@example.com,+92872447941,29,United Kingdom,Leeds,08/04/2023,24284.42,No
+CUST-2277,Sophia Smith,sophia.smith277@example.com,+92870777562,43,Pakistan,Islamabad,03-03-2026,11723.2,No
+CUST-2278,Emma Smith,emma.smith278@example.com,0300 1234567,36,United Kingdom,Manchester,2026/04/01,free,No
+CUST-2279,Emma Khan,emma.khan279@example.com,+61442546095,73,Pakistan,Lahore,13/01/2025,6962.14,Y
+CUST-2280,Muhammad Johnson,muhammad.johnson280@example.com,+61809527420,59,PK,Brisbane,2022-07-30,2840.67,No
+CUST-2281,Ali Wilson,ALI.WILSON281@EXAMPLE.COM,+1702137781,45,United Kingdom,London,07 Feb 2021,9406.59,No
+CUST-2282,John Smith,john.smith282@example.com,+92-300-ABC-123,26,United Kingdom,Manchester,10/12/2024,9427.66,No
+CUST-2283,Fatima Johnson,fatima.johnson283@example.com,+1721215642,145,Pakistan,Lahore,02-24-2022,51.71,0
+CUST-2284,Daniel Khan,daniel.khan284@example.com,+1711885590,43,Canada,Toronto,19 Jul 2020,417.21,Yes
+CUST-2285,Aisha Lee,name@,+92-300-ABC-123,27,Canada,Calgary,12-04-2021,24090.04,Yes
+CUST-2286,John Lee,john.lee286@example.com,+44363181980,,,Sydney,2026-01-25,8491.53,No
+cust-2287,EmmaClark,emma.clark287@example.com,+92831195603,52,Australia,Sydney,09 Feb 2022,9099.54,No
+CUST-2288,Aisha Smith,aisha.smith288@example.com,+44528391641,20,Can.,Sydney,2022/05/09,14070.41,No
+CUST-2289,Sarah Khan,sarah.khan289@example.com,0300 1234567,47,Australia,Brisbane,02-10-2023,4328.8,No
+CUST-2290,Muhammad Khan,muhammad.khan290@example.com,0044387128468,72,United States,Chicago,2025-07-31,4142.21,maybe
+,Emma Brown,emma.brown291@example.com,+1394416696,twenty,australia,,2025/00/12,15005.75,No
+CUST-2292,Fatima Brown,fatima.brown292@example.com,+92315593372,40,Pakistan,Lahore,02/04/2025,8410.16,No
+CUST-2293,  Muhammad Martin  ,muhammad.martin293@example.com,,56,United States,Seattle,15 May 2022,1O000,No
+CUST-2294,John Ahmed,john.ahmed294@example.com,0044813555232,19,Pakistan,Islamabad,14 May 2024,21900.99,Yes
+CUST-2295,Sarah Wilson,sarah.wilson295@example.com,+92387470461,55,United Kingdom,London,2026/01/14,18276.43,Yes
+CUST-2296,Muhammad Wilson,muhammad.wilson296@example.com,+1737699855,46,Pakistan,Islamabad,26/01/2021,15522.98,Yes
+CUST-2297,Muhammad Clark,name@,abc123,73,United Kingdom,Manchester,2026-03-09,"12.500,50",No
+CUST-2298,Aisha Martin,aisha.martin298@example.com,+92912645493,0,PK,unknown,08/09/2025,16602.8,1
+CUST-2299,Fatima Johnson,fatima.johnson299@example.com,+44600745344,62,United Kingdom,Manchester,11-24-2020,,Yes

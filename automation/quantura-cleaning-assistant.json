@@ -1,0 +1,172 @@
+{
+  "name": "Quantura Cleaning Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quantura-cleaning-assistant",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "5c64bbfe-236f-429c-9234-0466036f89c8",
+      "name": "Cleaning Assistant Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-864, 100],
+      "webhookId": "7a303dc3-7b24-4cfa-b642-e00e09df9b3f"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst headers = input.headers ?? {};\nconst body = input.body ?? {};\nconst authorization = headers.authorization ?? headers.Authorization;\nif (!authorization?.startsWith('Bearer ')) throw new Error('A valid Quantura Bearer token is required.');\nif (!body.dataset_id) throw new Error('dataset_id is required.');\nif (!String(body.question ?? '').trim()) throw new Error('question is required.');\nreturn [{ json: { authorization, dataset_id: String(body.dataset_id), question: String(body.question).trim().slice(0, 2000), confirm: body.confirm === true, confirmation_id: body.confirmation_id ? String(body.confirmation_id) : null } }];"
+      },
+      "id": "2e9580a4-9120-45a5-8be8-8a91f9d96d1a",
+      "name": "Validate Cleaning Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-624, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://REPLACE-WITH-QUANTURA-BACKEND.example.com/api/datasets/{{ $json.dataset_id }}/ask",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "={{ $json.authorization }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ question: $json.question, privacy_mode: true, context_mode: 'data_quality' }) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "edac3e9d-3048-42a7-b88a-c43805f02fbb",
+      "name": "Generate Cleaning Proposal",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-368, 100]
+    },
+    {
+      "parameters": {
+        "jsCode": "const answer = $input.first().json;\nconst request = $('Validate Cleaning Request').first().json;\nconst proposal = answer.proposed_transformation ?? null;\nconst endpointByAction = { deduplicate: '/clean/deduplicate', impute: '/clean/impute' };\nconst endpoint = proposal ? endpointByAction[proposal.action] : null;\nconst confirmationId = proposal ? `${request.dataset_id}:${proposal.action}:${proposal.preview_affected_rows}` : null;\nconst confirmationMatches = !request.confirmation_id || request.confirmation_id === confirmationId;\nconst shouldExecute = Boolean(request.confirm && proposal && endpoint && confirmationMatches);\nreturn [{ json: { should_execute: shouldExecute, dataset_id: request.dataset_id, authorization: request.authorization, answer: answer.answer, evidence: answer.evidence_summary ?? null, proposal, endpoint, payload: proposal?.operation_payload ?? null, confirmation_id: confirmationId, requires_confirmation: Boolean(proposal) && !shouldExecute, unsupported_action: Boolean(proposal) && !endpoint, error: request.confirm && !confirmationMatches ? 'The confirmation ID does not match the current cleaning proposal.' : null } }];"
+      },
+      "id": "cda27a5d-8d4f-4927-88d1-2538239865af",
+      "name": "Prepare Safe Cleaning Decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-112, 100]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff69567d-10ed-4ef2-a3da-fd80d0f42cf5",
+              "leftValue": "={{ $json.should_execute }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8dbd9807-e64d-4408-8e2c-e8f877e7be35",
+      "name": "User Confirmed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [144, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://REPLACE-WITH-QUANTURA-BACKEND.example.com/api/datasets/{{ $json.dataset_id }}{{ $json.endpoint }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "={{ $json.authorization }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json.payload) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "02029db8-bf38-43e5-bf6b-82947b1175dd",
+      "name": "Apply Confirmed Cleaning",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [400, 0]
+    },
+    {
+      "parameters": {
+        "url": "=https://REPLACE-WITH-QUANTURA-BACKEND.example.com/api/datasets/{{ $('Validate Cleaning Request').item.json.dataset_id }}/adaptive-dashboard?variant=0",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "={{ $('Validate Cleaning Request').item.json.authorization }}" }
+          ]
+        },
+        "options": { "timeout": 120000 }
+      },
+      "id": "cc2f50e2-ef33-492d-808c-919df9d15d0f",
+      "name": "Refresh Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [656, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { assistant_name: 'Quantura Cleaning Assistant', status: 'applied', success: true, cleaning: $('Apply Confirmed Cleaning').item.json, refreshed_dashboard: { version_id: $json.version_id, title: $json.title, domain: $json.domain }, message: 'Cleaning was applied as a new immutable dataset version and the dashboard was recalculated.' } }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "09531961-5b97-4722-a27a-3b36877b249e",
+      "name": "Return Applied Result",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [912, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { assistant_name: 'Quantura Cleaning Assistant', status: $json.proposal ? 'preview' : 'no_action', answer: $json.answer, evidence: $json.evidence, proposal: $json.proposal, confirmation_id: $json.confirmation_id, requires_confirmation: $json.requires_confirmation, unsupported_action: $json.unsupported_action, error: $json.error, message: $json.proposal ? 'Review the proposal, then repeat the request with confirm true and this confirmation_id.' : 'No supported cleaning operation was detected.' } }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "109433a8-ad39-465e-bfe7-5cf197ec06c5",
+      "name": "Return Cleaning Preview",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [400, 224]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Cleaning Assistant Webhook": { "main": [[{ "node": "Validate Cleaning Request", "type": "main", "index": 0 }]] },
+    "Validate Cleaning Request": { "main": [[{ "node": "Generate Cleaning Proposal", "type": "main", "index": 0 }]] },
+    "Generate Cleaning Proposal": { "main": [[{ "node": "Prepare Safe Cleaning Decision", "type": "main", "index": 0 }]] },
+    "Prepare Safe Cleaning Decision": { "main": [[{ "node": "User Confirmed?", "type": "main", "index": 0 }]] },
+    "User Confirmed?": {
+      "main": [
+        [{ "node": "Apply Confirmed Cleaning", "type": "main", "index": 0 }],
+        [{ "node": "Return Cleaning Preview", "type": "main", "index": 0 }]
+      ]
+    },
+    "Apply Confirmed Cleaning": { "main": [[{ "node": "Refresh Dashboard", "type": "main", "index": 0 }]] },
+    "Refresh Dashboard": { "main": [[{ "node": "Return Applied Result", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1", "saveManualExecutions": true },
+  "versionId": "8849658f-7417-407f-a41e-2ce8c3053cf0",
+  "meta": { "templateCredsSetupCompleted": false },
+  "tags": []
+}

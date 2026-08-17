@@ -1,0 +1,25 @@
+Ticket_ID,Created_Date,Department,Ticket_Type,Priority,Resolution_Hours,Satisfaction_Score
+T001,2026-07-01,Technical,Login Issue,High,6.5,4
+T002,2026-07-01,Billing,Refund Request,Medium,12.0,3
+T003,2026-07-02,Technical,API Error,Critical,18.5,2
+T004,2026-07-02,Customer Success,Onboarding,Low,3.0,5
+T005,2026-07-03,Billing,Invoice Error,High,10.0,4
+T006,2026-07-03,Technical,Performance,Critical,22.0,2
+T007,2026-07-04,Customer Success,Training,Medium,5.5,5
+T008,2026-07-04,Technical,Login Issue,Medium,4.0,4
+T009,2026-07-05,Billing,Refund Request,High,15.0,3
+T010,2026-07-05,Customer Success,Onboarding,Low,2.5,5
+T011,2026-07-06,Technical,API Error,High,14.0,3
+T012,2026-07-06,Billing,Invoice Error,Medium,8.0,4
+T013,2026-07-07,Customer Success,Training,Low,4.5,5
+T014,2026-07-07,Technical,Performance,Critical,26.0,1
+T015,2026-07-08,Billing,Refund Request,Medium,11.5,3
+T016,2026-07-08,Customer Success,Onboarding,Low,3.5,5
+T017,2026-07-09,Technical,Login Issue,High,7.0,4
+T018,2026-07-09,Billing,Invoice Error,High,13.0,3
+T019,2026-07-10,Customer Success,Training,Medium,6.0,4
+T020,2026-07-10,Technical,API Error,Critical,96.0,1
+T021,2026-07-11,Billing,Refund Request,High,16.0,2
+T022,2026-07-11,Customer Success,Onboarding,Low,3.0,5
+T023,2026-07-12,Technical,Performance,High,20.0,3
+T024,2026-07-12,Billing,Invoice Error,Medium,9.0,4

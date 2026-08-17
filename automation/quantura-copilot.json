@@ -1,0 +1,480 @@
+{
+  "name": "Quantura Copilot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quantura-copilot",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "7e9c94d7-053d-4a81-bc58-9aa79de4a9a5",
+      "name": "Receive Copilot Question",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        272
+      ],
+      "webhookId": "e4939e34-29d1-4660-9124-a835821cc7e8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xJnP1BD5cZKbxsoA",
+          "name": "Quantura Webhook Security"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst headers = input.headers ?? {};\nconst body = input.body ?? {};\nconst rawAuth = headers.authorization ?? headers.Authorization ?? body.authorization;\nconst allowed = ['general', 'business', 'data_quality', 'anomaly'];\nconst errors = [];\nif (!body.dataset_id || !String(body.dataset_id).trim()) errors.push('dataset_id is required.');\nif (!String(body.question ?? '').trim()) errors.push('question is required.');\nconst context_mode = body.context_mode ?? 'general';\nif (!allowed.includes(context_mode)) errors.push('context_mode must be one of: general, business, data_quality, anomaly.');\nconst bearer = typeof rawAuth === 'string' && rawAuth.startsWith('Bearer ') ? rawAuth : null;\nif (!bearer) errors.push('A valid Authorization Bearer token is required.');\nif (errors.length) {\n  return [{ json: {\n    valid: false,\n    error_status: bearer ? 400 : 401,\n    validation_error: errors.join(' '),\n  } }];\n}\nreturn [{ json: {\n  valid: true,\n  dataset_id: String(body.dataset_id).trim(),\n  question: String(body.question).trim().slice(0, 4000),\n  privacy_mode: Boolean(body.privacy_mode),\n  context_mode,\n  authorization: bearer,\n} }];"
+      },
+      "id": "9a19aa3f-92ba-4f34-9362-0068799b9187",
+      "name": "Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "valid",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "59f5a5ba-c09d-4e1e-8c0f-61c7a1e86ae6",
+      "name": "Input Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User question: {{ $json.question }}\nContext mode: {{ $json.context_mode }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an intent classifier for the Quantura Copilot.\nClassify the user question into exactly one intent:\n- \"dataset_question\": the user asks about the contents, values, statistics, quality, anomalies, or analysis of their active Quantura dataset.\n- \"workspace_help\": the user asks how to use, navigate, or find a feature inside the Quantura workspace/product.\nReturn only the classification and a confidence_score between 0 and 1.\nNever invent dataset values or answer the question here."
+        }
+      },
+      "id": "2275b26d-b0cc-4546-941c-9a8560535089",
+      "name": "Classify Intent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        672,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c9f97720-4bca-4842-a64e-7c14fe863e6b",
+      "name": "OpenRouter Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        576,
+        400
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "5rmjWnEyiM7E82ge",
+          "name": "1st api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\":\"object\",\"properties\":{\"intent\":{\"type\":\"string\",\"enum\":[\"dataset_question\",\"workspace_help\"]},\"confidence_score\":{\"type\":\"number\"}},\"required\":[\"intent\",\"confidence_score\"]}"
+      },
+      "id": "feabe22b-2bd2-47d2-b135-1d01d66f9ec7",
+      "name": "Intent Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        816,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.intent }}",
+                    "rightValue": "dataset_question",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "dataset_question"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.intent }}",
+                    "rightValue": "workspace_help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "workspace_help"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Fallback"
+        }
+      },
+      "id": "0b7f8d0f-443e-47ea-ba57-f864f8e5c568",
+      "name": "Route Intent",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1024,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.abdullahdev.work/api/datasets/{{ $('Validate Request').item.json.dataset_id }}/ask",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $('Validate Request').item.json.authorization }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ question: $('Validate Request').item.json.question, privacy_mode: $('Validate Request').item.json.privacy_mode, context_mode: $('Validate Request').item.json.context_mode }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          },
+          "timeout": 120000
+        }
+      },
+      "id": "9e4d7322-a109-4f40-beee-5991dd997879",
+      "name": "Ask Quantura Dataset",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1312,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\nconst base = {\n  success: true,\n  intent: null,\n  answer: null,\n  grounded_data: {},\n  recommended_chart: null,\n  proposed_transformation: null,\n  confidence_score: 0.0,\n  target_section: null,\n  suggested_followups: [],\n};\n\n// Validation failure path: return an accurate, recoverable client error.\nif (item && item.valid === false) {\n  return [{ json: {\n    statusCode: item.error_status === 401 ? 401 : 400,\n    response: { success: false, error: item.validation_error ?? 'Invalid Copilot request.' },\n  } }];\n}\n\n// Dataset API path (HTTP fullResponse: has numeric statusCode).\nif (item && typeof item.statusCode === 'number') {\n  const status = item.statusCode;\n  let body = item.body ?? {};\n  if (typeof body === 'string') {\n    try { body = JSON.parse(body); } catch { body = { detail: body }; }\n  }\n  if (status >= 400) {\n    const detail = body.detail ?? body.error ?? 'The Quantura dataset service returned an error.';\n    return [{ json: { statusCode: status, response: {\n      ...base,\n      success: false,\n      intent: 'dataset_question',\n      answer: String(detail),\n      error: String(detail),\n    } } }];\n  }\n  return [{ json: { statusCode: 200, response: {\n    ...base,\n    success: true,\n    intent: 'dataset_question',\n    answer: body.answer ?? null,\n    grounded_data: body.grounded_data ?? {},\n    recommended_chart: body.recommended_chart ?? null,\n    proposed_transformation: body.proposed_transformation ?? null,\n    confidence_score: typeof body.confidence_score === 'number' ? body.confidence_score : 0.0,\n    suggested_followups: Array.isArray(body.suggested_followups) ? body.suggested_followups : [],\n  } } }];\n}\n\n// Workspace help path (agent output object).\nif (item && item.output) {\n  const o = item.output;\n  return [{ json: { statusCode: 200, response: {\n    ...base,\n    success: true,\n    intent: 'workspace_help',\n    answer: o.answer ?? null,\n    target_section: o.target_section ?? null,\n    confidence_score: typeof o.confidence_score === 'number' ? o.confidence_score : 0.0,\n    suggested_followups: Array.isArray(o.suggested_followups) ? o.suggested_followups : [],\n  } } }];\n}\n\n// Safe fallback: never fabricate data.\nreturn [{ json: { statusCode: 500, response: { ...base, success: false, error: 'Unable to process the request.', answer: 'Unable to process the request.' } } }];"
+      },
+      "id": "5416759b-d329-4df1-a1d1-c98a58f94c84",
+      "name": "Normalize Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.response }}",
+        "options": {
+          "responseCode": "={{ $json.statusCode }}"
+        }
+      },
+      "id": "090eca90-3fe8-4938-8cd3-ed0d53e87d74",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1824,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User question: {{ $('Validate Request').item.json.question }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are the Quantura Product Guide. You help users navigate the Quantura workspace.\nAnswer the navigation/how-to question clearly and concisely.\nSet target_section to the single most relevant workspace section, chosen ONLY from this list:\ndashboard, upload, profiling, smart-cleaning, transformation, visualizations, insights, chat, forecasting, anomaly-detection, customer-analytics, issue-center, sql, reports, export, history, settings, admin, how-it-works.\nNever invent dataset values, numbers, or analytical results. You only help with product navigation."
+        }
+      },
+      "id": "9c35e974-3cef-4434-b323-52d72d7940bc",
+      "name": "Quantura Product Guide",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1248,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "bd5aea57-a191-4c14-b692-8fdddc66eed6",
+      "name": "OpenRouter Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1104,
+        512
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "5rmjWnEyiM7E82ge",
+          "name": "1st api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"target_section\":{\"type\":\"string\",\"enum\":[\"dashboard\",\"upload\",\"profiling\",\"smart-cleaning\",\"transformation\",\"visualizations\",\"insights\",\"chat\",\"forecasting\",\"anomaly-detection\",\"customer-analytics\",\"issue-center\",\"sql\",\"reports\",\"export\",\"history\",\"settings\",\"admin\",\"how-it-works\"]},\"suggested_followups\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"confidence_score\":{\"type\":\"number\"}},\"required\":[\"answer\",\"target_section\",\"confidence_score\"]}"
+      },
+      "id": "adc0a844-4394-4f69-b2b6-71205c966e90",
+      "name": "Guide Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1392,
+        528
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Receive Copilot Question": {
+      "main": [
+        [
+          {
+            "node": "Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Input Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input Valid?": {
+      "main": [
+        [
+          {
+            "node": "Classify Intent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Normalize Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Intent": {
+      "main": [
+        [
+          {
+            "node": "Route Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Classify Intent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intent Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Classify Intent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Intent": {
+      "main": [
+        [
+          {
+            "node": "Ask Quantura Dataset",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Quantura Product Guide",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Quantura Product Guide",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ask Quantura Dataset": {
+      "main": [
+        [
+          {
+            "node": "Normalize Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quantura Product Guide": {
+      "main": [
+        [
+          {
+            "node": "Normalize Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Quantura Product Guide",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guide Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Quantura Product Guide",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "f667c682-8a05-42f9-9ce9-f80821f084cc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "64ed6f3f9389084d5fac03c8c3313c56cfc84e0973be51fa7d7601ff7b9fcbb5"
+  },
+  "nodeGroups": [],
+  "id": "8yDjzw3NU2Piisbv",
+  "tags": []
+}

@@ -1,0 +1,176 @@
+{
+  "name": "Quantura - Secure Dataset Ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quantura-ingestion",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "aa8550bc-7fab-4fde-841d-41f90b05d9e1",
+      "name": "Receive Dataset",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -720,
+        120
+      ],
+      "webhookId": "21ea14c3-d470-4b04-a037-f983fdf03e06"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first();\nconst headers = input.json.headers ?? {};\nconst body = input.json.body ?? {};\nconst binary = input.binary ?? {};\nconst fileKey = binary.file ? 'file' : binary.data ? 'data' : Object.keys(binary)[0];\n\nif (!fileKey || !binary[fileKey]) {\n  throw new Error('No file received. Send multipart/form-data with a field named file.');\n}\n\nconst uploadedFile = binary[fileKey];\nconst fileName = uploadedFile.fileName ?? 'dataset.csv';\nconst extension = fileName.split('.').pop()?.toLowerCase();\nconst allowedExtensions = ['csv', 'xlsx', 'xls'];\n\nif (!extension || !allowedExtensions.includes(extension)) {\n  throw new Error(`Unsupported file type: ${extension ?? 'unknown'}. Use CSV, XLSX, or XLS.`);\n}\n\nconst authorization = headers.authorization ?? headers.Authorization;\nif (!authorization || !authorization.startsWith('Bearer ')) {\n  throw new Error('Missing Quantura Authorization header. Use Bearer followed by a valid Quantura access token.');\n}\n\nconst fallbackName = fileName.replace(/\\.[^.]+$/, '');\nconst requestedName = String(body.name ?? body.project_name ?? fallbackName).trim();\nconst datasetName = requestedName.slice(0, 120) || fallbackName;\n\nreturn [{\n  json: {\n    authorization,\n    dataset_name: datasetName,\n    original_filename: fileName,\n    received_at: new Date().toISOString()\n  },\n  binary: {\n    file: uploadedFile\n  }\n}];"
+      },
+      "id": "5980db70-ea93-4197-972e-fb19dbc687c0",
+      "name": "Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/api/datasets/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $json.authorization }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "file"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.dataset_name }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "eaa4663f-e117-49c6-ac1b-14c36abef397",
+      "name": "Upload Dataset to Quantura",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -224,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://host.docker.internal:8000/api/datasets/{{ $json.id }}/adaptive-dashboard?variant=0",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $('Validate Request').item.json.authorization }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "31c0d94b-0d7d-4359-b129-27137ef8eb06",
+      "name": "Build Dataset Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        32,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Dataset imported and dashboard generated.', dataset_id: $('Upload Dataset to Quantura').item.json.id, version_id: $('Upload Dataset to Quantura').item.json.current_version_id, dataset_name: $('Upload Dataset to Quantura').item.json.name, rows: $('Upload Dataset to Quantura').item.json.row_count, columns: $('Upload Dataset to Quantura').item.json.column_count, dashboard_title: $json.title, domain: $json.domain, completed_at: $now.toISO() } }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "id": "263141f5-2752-4bbe-8eed-7d90a8b7d63a",
+      "name": "Return Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        288,
+        120
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Receive Dataset": {
+      "main": [
+        [
+          {
+            "node": "Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Upload Dataset to Quantura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Dataset to Quantura": {
+      "main": [
+        [
+          {
+            "node": "Build Dataset Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Dataset Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Return Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "versionId": "187d78c4-dcc1-4501-96ac-a375be074697",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Quantura Visual Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quantura-visual-agent",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ed625ec0-f2f8-4247-8700-002ed128e701",
+      "name": "Visual Agent Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-640, 100],
+      "webhookId": "7394a23f-3ac5-4b72-b4d3-a2d5beac4963"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst headers = input.headers ?? {};\nconst body = input.body ?? {};\nconst authorization = headers.authorization ?? headers.Authorization;\nif (!authorization?.startsWith('Bearer ')) throw new Error('A valid Quantura Bearer token is required.');\nif (!body.dataset_id) throw new Error('dataset_id is required.');\nif (!String(body.prompt ?? '').trim()) throw new Error('prompt is required.');\nconst variant = Math.max(0, Math.min(99, Number(body.variant ?? 0) || 0));\nreturn [{ json: { authorization, dataset_id: String(body.dataset_id), prompt: String(body.prompt).trim().slice(0, 2000), selected_visual_id: body.selected_visual_id ? String(body.selected_visual_id) : null, variant } }];"
+      },
+      "id": "44a804d5-f806-4c72-bdc7-b2bf3baa1f20",
+      "name": "Validate Visual Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-400, 100]
+    },
+    {
+      "parameters": {
+        "url": "=https://REPLACE-WITH-QUANTURA-BACKEND.example.com/api/datasets/{{ $json.dataset_id }}/adaptive-dashboard?variant={{ $json.variant }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "={{ $json.authorization }}" }
+          ]
+        },
+        "options": { "timeout": 120000 }
+      },
+      "id": "a319ecf5-ce42-494b-a07a-c57b021bd279",
+      "name": "Load Dataset Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-144, 100]
+    },
+    {
+      "parameters": {
+        "jsCode": "const dashboard = $input.first().json;\nconst request = $('Validate Visual Request').first().json;\nconst prompt = request.prompt.toLowerCase();\nconst supported = ['area','line','bar','horizontal_bar','donut','scatter','radar','heatmap'];\nconst aliases = { pie: 'donut', column: 'bar', horizontal: 'horizontal_bar' };\nlet chartType = supported.find(type => prompt.includes(type.replace('_',' '))) ?? Object.keys(aliases).find(key => prompt.includes(key));\nchartType = aliases[chartType] ?? chartType ?? null;\nlet action = 'recommend_dashboard';\nif (prompt.includes('remove') || prompt.includes('delete')) action = 'remove_visual';\nelse if (prompt.includes('move') || prompt.includes('top') || prompt.includes('bottom') || prompt.includes('beside')) action = 'move_visual';\nelse if (chartType && request.selected_visual_id) action = 'change_chart_type';\nelse if (prompt.includes('rebuild') || prompt.includes('another') || prompt.includes('new dashboard')) action = 'replace_dashboard';\nconst selected = dashboard.visuals?.find(v => v.id === request.selected_visual_id) ?? null;\nconst patch = { action, visual_id: request.selected_visual_id, chart_type: chartType, position: prompt.includes('top') ? 'top' : prompt.includes('bottom') ? 'bottom' : null };\nconst warnings = [];\nif (['remove_visual','move_visual','change_chart_type'].includes(action) && !selected) warnings.push('Select a dashboard visual before applying this instruction.');\nreturn [{ json: { agent_name: 'Quantura Visual Agent', dataset_id: dashboard.dataset_id, version_id: dashboard.version_id, prompt: request.prompt, requested_patch: patch, selected_visual: selected, preview_only: true, dashboard, recommendations: dashboard.recommendations ?? [], insights: dashboard.insights ?? [], warnings, requires_frontend_apply: true, message: warnings.length ? warnings[0] : 'A validated dashboard preview and visual instruction are ready. Apply or reject the change in Quantura.' } }];"
+      },
+      "id": "aff5772a-3304-4c77-b668-73e1c4df78f1",
+      "name": "Prepare Visual Instruction",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [112, 100]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "c14b9e6f-51f0-419d-a78c-11f93119e098",
+      "name": "Return Visual Preview",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [368, 100]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Visual Agent Webhook": { "main": [[{ "node": "Validate Visual Request", "type": "main", "index": 0 }]] },
+    "Validate Visual Request": { "main": [[{ "node": "Load Dataset Dashboard", "type": "main", "index": 0 }]] },
+    "Load Dataset Dashboard": { "main": [[{ "node": "Prepare Visual Instruction", "type": "main", "index": 0 }]] },
+    "Prepare Visual Instruction": { "main": [[{ "node": "Return Visual Preview", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1", "saveManualExecutions": true },
+  "versionId": "0015d0fb-02df-4bc4-bef6-629b75144ef3",
+  "meta": { "templateCredsSetupCompleted": false },
+  "tags": []
+}
